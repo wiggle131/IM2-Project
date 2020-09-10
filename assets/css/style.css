@@ -187,11 +187,10 @@ h6 {
 
 .rectangle-1 {
   position: absolute;
-  width: 68px;
-  height: 8px;
-  left: 269px;
-  top: 251px;
-
+  width: 99px;
+  height: 12px;
+  left: 299px;
+  top: 418px;
   background: #fe83a2;
 }
 /*--------------------------------------------------------------
@@ -246,7 +245,7 @@ h6 {
 .nav-menu > ul > li {
   position: relative;
   white-space: nowrap;
-  padding: 10px 40px 0px 40px;
+  padding: 10px 60px 0px 30px;
 }
 
 .nav-menu a {
@@ -254,7 +253,7 @@ h6 {
   position: relative;
   color: #000;
   transition: 0.3s;
-  font-size: 24px;
+  font-size: 18px;
   letter-spacing: 0.5px;
   font-weight: 500;
   font-family: "Open Sans", sans-serif;
@@ -497,9 +496,10 @@ h6 {
 
 #hero h1 {
   margin: 0 0 40px 0;
-  font-size: 48px;
-  font-weight: 700;
-  line-height: 28px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 86px;
+  line-height: 89px;
   color: #000;
   letter-spacing: 2px;
 }

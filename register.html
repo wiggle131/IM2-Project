@@ -1,143 +1,325 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Page Title - SB Admin</title>
-        <link href="css/styles.css" rel="stylesheet" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
-    </head>
-    <body class="bg-primary">
-        <div id="layoutAuthentication">
-            <div id="layoutAuthentication_content">
-                <main>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-7">
-                                <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Create Account</h3></div>
-                                    <div class="card-body">
-                                    <form name="myForm" action="" method="post" required>
-                                            <div class="form-group" ><label class="small mb-1"  for="inputFirstName">Name</label><input class="form-control py-4" name="Name" id="inputFirstName" type="text" placeholder="Enter full name" /></div>                                            
-                                            <div class="form-group" ><label class="small mb-1" for="inputEmailAddress">Email</label><input class="form-control py-4" name="Email" id="inputEmailAddress" type="text" aria-describedby="emailHelp" placeholder="Enter email address" /></div>
-                                            <div class="form-row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group"  ><label class="small mb-1" for="inputPassword">Password</label><input class="form-control py-4" name="Password" id="inputPassword" type="password" placeholder="Enter password" /></div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group"><label class="small mb-1" for="inputConfirmPassword">Confirm Password</label><input class="form-control py-4" id="inputConfirmPassword" type="password" placeholder="Confirm password" /></div>
-                                                </div>
-                                            </div> 
-                                            <div class="form-group" ><label class="small mb-1"  for="inputFirstName">Address</label><input class="form-control py-4" name="Address" id="inputFirstName" type="text" placeholder="Enter Address" /></div>
-                                            <div class="form-group" >
-                                                <label class="small mb-1"  for="inputFirstName">Game</label>
-                                                    <select name = "selectGame" class="form-control">
-                                                        <?php
-                                                                $con = mysqli_connect("localhost","root","","esport_org")
-                                                                or die("Error in Connection");
-                                                                
-                                                                $user_num = "SELECT * from game";
-                                                                $user_count = mysqli_query($con,$user_num);
-                                                                while($user = mysqli_fetch_array($user_count))
-                                                                {                                                                  
-                                                                    echo '<option>' .$user['nameOfgame']. '</option>';
-                                                                }
-                                                            ?>
-                                                    </select>
-                                            <div class="form-row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group"  ><label class="small mb-1" for="inputPassword">Start Contract</label><input class="form-control py-4" name="startContract" id="inputPassword" type="date"/></div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group"><label class="small mb-1" for="inputPassword">End COntract</label><input class="form-control py-4" name = "endContract" id="inputConfirmPassword" type="date"/></div>
-                                                </div>
-                                            </div>       
-                                        </div>
-                                            <div class="form-group mt-4 mb-0" name="submit"><input class="btn btn-primary btn-block" type="submit" name="submit" values = "Create Account"></div>
-                                        </form>
-                                    </div>
-                                    <div class="card-footer text-center">
-                                        <div class="small"><a href="login.php">Have an account? Go to login</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Page Title - SB Admin</title>
+    <link href="assets/css/styles2.css" rel="stylesheet" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body class="bg-primary">
+    <div id="layoutAuthentication">
+      <div id="layoutAuthentication_content">
+        <main>
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="card shadow-lg border-0 rounded-lg mt-5">
+                <div class="card-header">
+                  <h3 class="text-center font-weight-light my-4">
+                    Create Account
+                  </h3>
+                </div>
+                <div class="card-body">
+                  <form name="myForm" action="" method="post" required>
+                    <div class="form-row">
+                      <div class="col-md-6">
+                        <em>Date Registered</em>
+                        <p id="date"></p>
+                      </div>
+                      <div class="col-md-6">
+                        <h5>Employee ID</h5>
+                        <p id="random"></p>
+                      </div>
                     </div>
-                </main>
-            </div>
-            <div id="layoutAuthentication_footer">
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2020</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
+                    <label class="mb-1"><strong>Name</strong></label>
+                    <div class="form-row">
+                      <div class="col-md-4">
+                        <input
+                          class="form-control py-4"
+                          name="Name"
+                          id="inputFirstName"
+                          type="text"
+                          placeholder="First name"
+                        />
+                      </div>
+                      <div class="col-md-4">
+                        <input
+                          class="form-control py-4"
+                          name="Name"
+                          id="inputFirstName"
+                          type="text"
+                          placeholder="Middle name"
+                        />
+                      </div>
+                      <div class="col-md-4">
+                        <input
+                          class="form-control py-4"
+                          name="Name"
+                          id="inputFirstName"
+                          type="text"
+                          placeholder="Last name"
+                        />
+                      </div>
                     </div>
-                </footer>
+                    <label class="mb-1"><strong>Address</strong></label>
+                    <div class="form-row">
+                      <div class="col-md-4">
+                        <input
+                          class="form-control py-4"
+                          name="Name"
+                          id="inputFirstName"
+                          type="text"
+                          placeholder="Street"
+                        />
+                      </div>
+                      <div class="col-md-4">
+                        <input
+                          class="form-control py-4"
+                          name="Name"
+                          id="inputFirstName"
+                          type="text"
+                          placeholder="Barangay"
+                        />
+                      </div>
+                      <div class="col-md-4">
+                        <input
+                          class="form-control py-4"
+                          name="Name"
+                          id="inputFirstName"
+                          type="text"
+                          placeholder="City"
+                        />
+                      </div>
+                    </div>
+                    <div class="form-row mt-3">
+                      <div class="col-md-4">
+                        <input
+                          class="form-control py-4"
+                          name="Name"
+                          id="inputFirstName"
+                          type="text"
+                          placeholder="Province"
+                        />
+                      </div>
+                      <div class="col-md-4">
+                        <input
+                          class="form-control py-4"
+                          name="Name"
+                          id="inputFirstName"
+                          type="text"
+                          placeholder="Zip"
+                        />
+                      </div>
+                      <div class="col-md-4">
+                        <input
+                          class="form-control py-4"
+                          name="Name"
+                          id="inputFirstName"
+                          type="text"
+                          placeholder="Country"
+                        />
+                      </div>
+                      <div class="form-row">
+                        <div class="col-auto">
+                          <label class="mb-1"><strong>Birthdate</strong></label>
+                          <input
+                            class="form-control py-lg-2"
+                            name="Birthdate"
+                            id="inputBirthdate"
+                            type="date"
+                          />
+                        </div>
+                        <div class="col-auto">
+                          <label class="mb-1"><strong>Status</strong></label>
+                          <select
+                            name="selectStatus"
+                            class="mt-1 form-control drop-down"
+                          >
+                            <option value=""></option>
+                            <option value="Single">Single</option>
+                            <option value="Single">Married</option>
+                            <option value="Single">Widow/er</option>
+                            <option value="Single">Divorced</option>
+                          </select>
+                        </div>
+                        <div class="col-auto">
+                          <label class="mb-1"><strong>Gender</strong></label>
+                          <select
+                            name="selectStatus"
+                            class="mt-1 form-control drop-down"
+                          >
+                            <option class="dropdown-item"></option>
+                            <option value="Single">Male</option>
+                            <option value="Single">Female</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="mb-1"><strong>Spouse's Name</strong></label>
+                      <input
+                        class="form-control py-4"
+                        name="Address"
+                        id="inputFirstName"
+                        type="text"
+                        placeholder="Spouse Name"
+                      />
+                      <div class="form-row">
+                        <div class="col-6">
+                          <label class="mb-1"><strong>Spouse</strong></label>
+                          <input
+                            class="form-control py-4"
+                            name="children"
+                            id="inputFirstName"
+                            type="number"
+                            placeholder="Number of Children"
+                          />
+                        </div>
+                        <div class="col-6">
+                          <label class="mb-1"
+                            ><strong>Number of Children</strong></label
+                          >
+                          <input
+                            class="form-control py-4"
+                            name="children"
+                            id="inputFirstName"
+                            type="number"
+                            placeholder="Number of Children"
+                          />
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="col-6">
+                          <label class="mb-1"
+                            ><strong>Mother's Name</strong></label
+                          >
+                          <input
+                            class="form-control py-4"
+                            name="mother"
+                            id="inputMotherName"
+                            type="text"
+                            placeholder="Mother's Name"
+                          />
+                        </div>
+                        <div class="col-6">
+                          <label class="mb-1"
+                            ><strong>Mother's Occupation</strong></label
+                          >
+                          <input
+                            class="form-control py-4"
+                            name="motherjob"
+                            id="inputMotherJob"
+                            type="text"
+                            placeholder="Mother's Name"
+                          />
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="col-6">
+                          <label class="mb-1"
+                            ><strong>Father's Name</strong></label
+                          >
+                          <input
+                            class="form-control py-4"
+                            name="father"
+                            id="inputFatherName"
+                            type="text"
+                            placeholder="Father's Name"
+                          />
+                        </div>
+                        <div class="col-6">
+                          <label class="mb-1"
+                            ><strong>Father's Occupation</strong></label
+                          >
+                          <input
+                            class="form-control py-4"
+                            name="fatherjob"
+                            id="inputFatherJob"
+                            type="text"
+                            placeholder="Father's Name"
+                          />
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="col-4">
+                          <label class="mb-1"
+                            ><strong>Height(cm)</strong></label
+                          >
+                          <input
+                            class="form-control py-4"
+                            name="height"
+                            id="inputHeight"
+                            type="number"
+                            placeholder="Height in cm"
+                            step=".01"
+                          />
+                        </div>
+                        <div class="col-4">
+                          <label class="mb-1"
+                            ><strong>Weight(Kg)</strong></label
+                          >
+                          <input
+                            class="form-control py-4"
+                            name="Weight"
+                            id="inputWeight"
+                            type="number"
+                            placeholder="Weight in kg"
+                            step=".01"
+                          />
+                        </div>
+                        <div class="col-4">
+                          <label class="mb-1"><strong>Religion</strong></label>
+                          <input
+                            class="form-control py-4"
+                            name="Religion"
+                            id="inputReligion"
+                            type="text"
+                            placeholder="Religion"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group mt-4 mb-0" name="submit">
+                      <a
+                        href="register2.html"
+                        type="button"
+                        class="btn btn-primary btn-block"
+                        style="color: white"
+                        >Next</a
+                      >
+                    </div>
+                  </form>
+                </div>
+                <div class="card-footer text-center">
+                  <div class="small">
+                    <a href="login.html">Have an account? Go to login</a>
+                  </div>
+                </div>
+              </div>
             </div>
-        </div>
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-    </body>
+          </div>
+        </main>
+      </div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="assets/js/scripts.js"></script>
+  </body>
 </html>
-
-<?php
-
-        $con = mysqli_connect("localhost","root","","esport_org")
-        or die("Error in Connection");
-
-        if (isset($_POST["submit"]) && !empty($_POST['Name']) && !empty($_POST['Email']) && !empty($_POST['Password'])
-            && !empty($_POST['Address']) && !empty($_POST['selectGame']) && !empty($_POST['startContract']) && !empty($_POST['endContract'])) {
-            $playerID = rand(999999,9999999999);
-            $name =$_POST['Name'];
-            $Email=$_POST['Email'];
-            $Password=$_POST['Password'];
-            $address = $_POST['Address'];
-            //Get Game ID
-            $game = $_POST['selectGame'];
-            echo $game;
-            $game_code = "SELECT * FROM game WHERE nameOfgame = '$game'";
-            $game_qry = mysqli_query($con,$game_code);
-            $gameName = mysqli_fetch_array($game_qry);
-            $gameID = $gameName['gameID'];
-            $start = $_POST["startContract"];
-            $end = $_POST["endContract"];
-            
-
-        $sql="SELECT count(*) AS count FROM players WHERE email= '$Email'";
-        $result=mysqli_query($con, $sql);
-        $row =mysqli_fetch_array($result);
-
-        $sql2="SELECT count(*) AS count2 FROM players WHERE name= '$name'";
-        $result2=mysqli_query($con, $sql2);
-    $row2 =mysqli_fetch_array($result2);
-    
-    if($row['count']==0 && $row2['count2'] == 0){
-        $sql= "INSERT INTO players(playerID,name,email,pass,address,gameID,startContract,endContract,status) values('$playerID','$name',
-            '$Email','$Password','$address','$gameID','$start','$end',1)";
-        mysqli_query($con, $sql) or die("ERROR");
-        header('Location: login.php');
-    }
-    else {
-        echo '<script language="javascript">';
-        echo 'alert("Email/Name already exists")';  
-        echo '</script>';
-    }
-    exit;
-        
-    }
-    else if (isset($_POST["submit"]) && empty($_POST['Name']) && empty($_POST['Email']) && empty($_POST['Password'])
-    && empty($_POST['Address']) && empty($_POST['startContract']) && empty($_POST['endContract'])){
-        echo '<script language="javascript">';
-        echo 'alert("Please FIll up the Fields")';  
-        echo '</script>';
-    }
-?>
