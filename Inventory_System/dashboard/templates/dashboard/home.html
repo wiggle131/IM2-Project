@@ -1,0 +1,257 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% block content %}
+<h1 class="font-bold text-4xl mb-2">Overview</h1>
+<!--Overview grid-->
+<div class="grid gap-5 grid-cols-3 mb-8">
+    <a class="w-full cursor-pointer" href="">
+        <div class="xl:h-40 lg:h-32 bg-white shadow-2xl flex justify-between p-8" style="border-radius: 20px;">
+            <div class="flex items-center">
+                <div>
+                    <span class="font-extrabold text-6xl">24</span>
+                    <span class="font-bold text-2xl ml-2 text-gray-500">Orders</span></div>
+            </div>
+            <div class="flex items-center">
+                <img src="{% static '/img/bag.svg' %}" alt="orders" height="100" width="100">
+            </div>
+        </div>
+    </a>
+    <a class="w-full cursor-pointer" href="">
+        <div class="xl:h-40 lg:h-32 bg-white shadow-2xl flex justify-between px-8" style="border-radius: 20px;">
+            <div class="flex items-center">
+                <div>
+                    <span class="font-extrabold text-6xl">50</span>
+                    <span class="font-bold text-2xl ml-2 text-gray-500">Products</span></div>
+
+            </div>
+            <div class="flex items-center">
+                <img src="{% static '/img/products.svg' %}" alt="orders" height="100" width="100">
+            </div>
+        </div>
+    </a>
+    <a class="w-full cursor-pointer" href="">
+        <div class="xl:h-40 lg:h-32 bg-white shadow-2xl flex justify-between px-8" style="border-radius: 20px;">
+            <div class="flex items-center">
+                <div>
+                    <span class="font-extrabold text-6xl">30</span>
+                    <span class="font-bold text-2xl ml-2 text-gray-500">Messages</span></div>
+
+            </div>
+            <div class="flex items-center">
+                <img src="{% static '/img/message.svg' %}" alt="orders" height="100" width="100">
+            </div>
+        </div>
+    </a>
+</div>
+<!--Overview grid End-->
+
+<!--Title Current Balance & earning Summary-->
+<div class="grid gap-5 grid-cols-3 mb-2">
+    <h1 class="font-bold text-4xl mb-2">Current Balance</h1>
+    <h1 class="font-bold text-4xl mb-2 col-span-2">Earning Summary</h1>
+</div>
+<!--Title Current Balance & earning Summary End-->
+
+<!--Current Balance grid-row-->
+<div class="grid gap-5 grid-cols-3 mb-8">
+    <div class="grid grid-rows-2 gap-5">
+        <a class="w-full cursor-pointer" href="">
+            <div class="xl:h-56 lg:h-40 bg-white shadow-2xl flex justify-between px-8 py-4"
+                style="border-radius: 20px;">
+                <div>
+                    <span class="text-gray-500 font-semibold text-xl">Earning this month</span>
+                    <div class="flex items-end">
+                        <span class="font-bold text-4xl mr-2">&#8369; 30000.00</span>
+                        <div class="flex items-center">
+                            <span class="mb-2 font-bold text-md mr-1" style="color:#16DBCC">25%</span>
+                            <svg class="mb-1" width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="6" cy="6" r="6" fill="#9DE2DC" />
+                                <path d="M6 2L10.3301 8H1.66987L6 2Z" fill="#16DBCC" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class=" flex items-center mt-3">
+                        <!--Graph here-->
+                        <svg class="w-full h-full" viewBox="0 0 240 87" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <rect width="240" height="87" fill="url(#pattern0)" />
+                            <defs>
+                                <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                    <use xlink:href="#image0"
+                                        transform="translate(-0.075) scale(0.00416667 0.0114943)" />
+                                </pattern>
+                                <image id="image0" width="276" height="87"
+                                    xlink:href="data:image/png;base64,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" />
+                            </defs>
+                        </svg>
+
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a class="w-full cursor-pointer" href="">
+            <div class="xl:h-56 lg:h-40 bg-white shadow-2xl flex justify-between px-8 py-4"
+                style="border-radius: 20px;">
+                <div>
+                    <span class="text-gray-500 font-semibold text-xl">Total orders this month</span>
+                    <div class="flex items-end">
+                        <span class="font-bold text-4xl mr-2">24</span>
+                        <div class="flex items-center">
+                            <span class="mb-2 font-bold text-md mr-1" style="color:#FE83A2">11%</span>
+                            <svg class="mb-1" width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="6" cy="6" r="6" fill="#FFD4DE" />
+                                <path d="M6 10L1.66987 4L10.3301 4L6 10Z" fill="#FE83A2" />
+                            </svg>
+
+                        </div>
+                    </div>
+                    <div class=" flex items-center mt-3">
+                        <!--Graph here-->
+                        <svg class="w-full h-full" viewBox="0 0 240 83" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <rect width="240" height="83" fill="url(#pattern0)" />
+                            <defs>
+                                <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                    <use xlink:href="#image0"
+                                        transform="translate(0 -0.0145136) scale(0.00355872 0.0102903)" />
+                                </pattern>
+                                <image id="image0" width="281" height="100"
+                                    xlink:href="data:image/png;base64,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" />
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <!--Current Balance grid-row end-->
+
+    <!--Earning Summary grid-row -->
+    <div class="col-span-2">
+        <div class="h-full bg-white shadow-2xl flex justify-between px-8 py-3" style="border-radius: 20px;">
+            <div class="w-full h-auto">
+                <div class="grid grid-flow-col mt-5 h-12 w-full rounded-lg overflow-auto"
+                    style="background-color: #C8C3EA;">
+                    <div class="flex items-center">
+                        <a href="#" class="w-full ">
+                            <div
+                                class="hover:text-white hover:bg-blue-700 hover:border-blue-700 bg-white border border-blue-400  p-1 rounded-lg mx-2">
+                                <span class="flex justify-center">One Week</span>
+                            </div>
+                        </a>
+                        <a href="#" class="w-full ">
+                            <div
+                                class="hover:text-white hover:bg-blue-700 hover:border-blue-700 bg-white border border-blue-400 p-1 rounded-lg mx-2">
+                                <span class="flex justify-center">One Month</span>
+                            </div>
+                        </a>
+                        <a href="#" class="w-full ">
+                            <div
+                                class="hover:text-white hover:bg-blue-700 hover:border-blue-700 bg-white border border-blue-400 p-1 rounded-lg mx-2">
+                                <span class="flex justify-center">Three Months</span>
+                            </div>
+                        </a>
+                        <a href="#" class="w-full ">
+                            <div class="text-white bg-blue-700 p-1 rounded-lg mx-2">
+                                <span class="flex justify-center">One Year</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Earning Summary grid-row end-->
+</div>
+<!--Current Balance grid-row-->
+<!--Table -->
+<h1 class="font-bold text-4xl mb-2">Recent Customer</h1>
+<div class="container w-full   mx-auto px-2">
+    <!--Card-->
+    <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
+        <table id="example" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+            <thead>
+                <tr>
+                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                        data-priority="1">Date Registered</th>
+                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                        data-priority="2">Firstname</th>
+                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                        data-priority="3">Lastname</th>
+                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                        data-priority="4">Date of Birth</th>
+                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                        data-priority="5">Address</th>
+                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="px-6 py-4">1900/01/01</td>
+                    <td class="px-6 py-4">Jhosie</td>
+                    <td class="px-6 py-4">Espantaleon</td>
+                    <td class="px-6 py-4">1800/01/01</td>
+                    <td class="px-6 py-4">Cebu</td>
+                    <td
+                        class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium flex justify-end">
+
+                        <a href="#" class="text-indigo-600 hover:text-indigo-900 mr-3">
+                            <img class="w-6" src="{% static '/img/eye.png' %}" alt="">
+                        </a>
+                        <a href="#" class="text-indigo-600 hover:text-indigo-900 mr-3">
+                            <img class="w-6" src="{% static '/img/delete.png' %}" alt="">
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="px-6 py-4">2000/02/01</td>
+                    <td class="px-6 py-4">Elram</td>
+                    <td class="px-6 py-4">Espra</td>
+                    <td class="px-6 py-4">1700/06/05</td>
+                    <td class="px-6 py-4">Cebu</td>
+                    <td
+                        class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium flex justify-end">
+
+                        <a href="#" class="text-indigo-600 hover:text-indigo-900 mr-3">
+                            <img class="w-6" src="{% static '/img/eye.png' %}" alt="">
+                        </a>
+                        <a href="#" class="text-indigo-600 hover:text-indigo-900 mr-3">
+                            <img class="w-6" src="{% static '/img/delete.png' %}" alt="">
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="px-6 py-4">1200/07/02</td>
+                    <td class="px-6 py-4">Aldren</td>
+                    <td class="px-6 py-4">Concordia</td>
+                    <td class="px-6 py-4">2000/01/01</td>
+                    <td class="px-6 py-4">Cebu</td>
+                    <td
+                        class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium flex justify-end">
+
+                        <a href="#" class="text-indigo-600 hover:text-indigo-900 mr-3">
+                            <img class="w-6" src="{% static '/img/eye.png' %}" alt="">
+                        </a>
+                        <a href="#" class="text-indigo-600 hover:text-indigo-900 mr-3">
+                            <img class="w-6" src="{% static '/img/delete.png' %}" alt="">
+                        </a>
+                    </td>
+                </tr>
+
+
+            </tbody>
+
+        </table>
+
+
+    </div>
+    <!--/Card-->
+
+
+</div>
+<!--/container-->
+
+
+{% endblock content %}

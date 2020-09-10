@@ -1,0 +1,159 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% block content %}
+<!--Table -->
+<h1 class="font-bold text-4xl mb-2">Recent Customer</h1>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-5">Add Customer</button>
+</form>
+
+<div class="container w-full mx-auto px-2">
+    <!--Card-->
+    <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
+        <table id="example" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+            <thead>
+                <tr>
+                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                        data-priority="1">Date Registered</th>
+                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                        data-priority="2">Firstname</th>
+                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                        data-priority="3">Lastname</th>
+                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                        data-priority="4">Date of Birth</th>
+                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                        data-priority="5">Address</th>
+                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="px-6 py-4">1900/01/01</td>
+                    <td class="px-6 py-4">Jhosie</td>
+                    <td class="px-6 py-4">Espantaleon</td>
+                    <td class="px-6 py-4">1800/01/01</td>
+                    <td class="px-6 py-4">Cebu</td>
+                    <td
+                        class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium flex justify-end">
+
+                        <a href="#" class="text-indigo-600 hover:text-indigo-900 mr-3 show-modal">
+                            <img class="w-6" src="{% static '/img/eye.png' %}" alt="">
+                        </a>
+                        <a href="#" class="text-indigo-600 hover:text-indigo-900 mr-3">
+                            <img class="w-6" src="{% static '/img/delete.png' %}" alt="">
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="px-6 py-4">2000/02/01</td>
+                    <td class="px-6 py-4">Elram</td>
+                    <td class="px-6 py-4">Espra</td>
+                    <td class="px-6 py-4">1700/06/05</td>
+                    <td class="px-6 py-4">Cebu</td>
+                    <td
+                        class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium flex justify-end">
+
+                        <a href="#" class="text-indigo-600 hover:text-indigo-900 mr-3 show-modal">
+                            <img class="w-6" src="{% static '/img/eye.png' %}" alt="">
+                        </a>
+                        <a href="#" class="text-indigo-600 hover:text-indigo-900 mr-3">
+                            <img class="w-6" src="{% static '/img/delete.png' %}" alt="">
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="px-6 py-4">1200/07/02</td>
+                    <td class="px-6 py-4">Aldren</td>
+                    <td class="px-6 py-4">Concordia</td>
+                    <td class="px-6 py-4">2000/01/01</td>
+                    <td class="px-6 py-4">Cebu</td>
+                    <td
+                        class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium flex justify-end">
+
+                        <a href="#" class="text-indigo-600 hover:text-indigo-900 mr-3 show-modal">
+                            <img class="w-6" src="{% static '/img/eye.png' %}" alt="">
+                        </a>
+                        <a href="#" class="text-indigo-600 hover:text-indigo-900 mr-3 ">
+                            <img class="w-6" src="{% static '/img/delete.png' %}" alt="">
+                        </a>
+                    </td>
+                </tr>
+
+
+            </tbody>
+
+        </table>
+
+
+    </div>
+    <!--/Card-->
+
+
+</div>
+<!--/container-->
+<div class="modal h-screen w-full fixed left-0 top-0 flex justify-center items-center bg-black bg-opacity-50 hidden">
+    <!-- modal -->
+    <div class="bg-white rounded shadow-lg w-1/3">
+        <!-- modal header -->
+        <div class="border-b py-5 flex justify-between items-center">
+            <h3 class="font-bold text-xl pl-10 ">Jhosie Espantaleon</h3>
+            <button class="bg-blue-600 hover:bg-blue-700 px-5 py-1 rounded text-white">Edit</button>
+            <button class="text-black close-modal px-10 ">&cross;</button>
+        </div>
+        <!-- modal body -->
+        <div class="p-3">
+            Single<br>
+            Ready To Mingle<br>
+            Male<br>
+            <strong>Can change your World!</strong><br>
+            Code Name: <strong>Wiggle... Likes to Wiggle and Jiggle your World!</strong><br>
+            09321456789<br>
+            Simp<br>
+            Otaku<br>
+
+        </div>
+        <div class="flex justify-end items-center w-100 border-t p-3">
+            <button class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white">Okay</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+<!--Datatables -->
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        var table = $('#example').DataTable({
+            responsive: true
+        })
+            .columns.adjust()
+            .responsive.recalc();
+    });
+
+</script>
+
+<script>
+    const modal = document.querySelector('.modal');
+
+    const showModal = document.querySelector('.show-modal');
+    const closeModal = document.querySelectorAll('.close-modal');
+
+    showModal.addEventListener('click', function () {
+        modal.classList.remove('hidden')
+    });
+
+    closeModal.forEach(close => {
+        close.addEventListener('click', function () {
+            modal.classList.add('hidden')
+        });
+    });
+</script>
+
+{% endblock content %}

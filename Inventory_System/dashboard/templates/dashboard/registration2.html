@@ -1,0 +1,213 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" />
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Page Title - SB Admin</title>
+    <link href="{ static '/css/styles2.css' }" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
+        crossorigin="anonymous"></script>
+</head>
+
+<body class="bg-primary">
+    <div id="layoutAuthentication">
+        <div id="layoutAuthentication_content">
+            <main>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="card shadow-lg border-0 rounded-lg mt-5">
+                            <div class="card-header">
+                                <h3 class="text-center font-weight-light my-4">
+                                    Educational Background
+                                </h3>
+                            </div>
+                            <div class="card-body">
+                                <form name="myForm" action="" method="post" required>
+                                    <div class="form-group">
+                                        <h3 class="text-center mb-2">Elementary</h3>
+                                        <div class="form-row">
+                                            <div class="col-md-4">
+                                                <label class="mb-1"><strong>School Name</strong></label>
+                                                <input class="form-control py-4" name="elementaryName"
+                                                    id="inputElementaryName" type="text" placeholder="School name" />
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="mb-1"><strong>Grade</strong></label>
+                                                <input class="form-control py-4" name="elemGrade" id="inputElemGrade"
+                                                    type="number" placeholder="Grade" />
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="mb-1"><strong>Year Completed</strong></label>
+                                                <input class="form-control py-4" name="Name" id="inputElemYear"
+                                                    type="number" placeholder="Year Completed" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="mb-1 mt-2"><strong>Achievements</strong></label>
+                                            <input class="form-control py-4" name="Achievements" id="inputElemAchieve"
+                                                type="text" placeholder="Achievements" />
+                                        </div>
+                                        <h3 class="text-center mt-4">Junior High School</h3>
+                                        <div class="form-row">
+                                            <div class="col-md-4">
+                                                <label class="mb-1"><strong>School Name</strong></label>
+                                                <input class="form-control py-4" name="juniorhsName"
+                                                    id="inputJuniorhsName" type="text" placeholder="School name" />
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="mb-1"><strong>Grade</strong></label>
+                                                <input class="form-control py-4" name="juniorhsGrade"
+                                                    id="inputJuniorhsGrade" type="number" placeholder="Grade" />
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="mb-1"><strong>Year Completed</strong></label>
+                                                <input class="form-control py-4" name="Name" id="inputJuniorhsYear"
+                                                    type="number" placeholder="Year Completed" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="mb-1 mt-2"><strong>Achievements</strong></label>
+                                            <input class="form-control py-4" name="Achievements"
+                                                id="inputJuniorhscAhieve" type="text" placeholder="Achievements" />
+                                        </div>
+                                        <h3 class="text-center mt-4">Senior High School</h3>
+
+                                        <div class="form-row">
+                                            <div class="col-md-3">
+                                                <label class="mb-1"><strong>School Name</strong></label>
+                                                <input class="form-control py-4" name="seniorhsName"
+                                                    id="inputSeniorhsName" type="text" placeholder="School name" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="mb-1"><strong>Grade</strong></label>
+                                                <input class="form-control py-4" name="seniorhsGrade"
+                                                    id="inputSeniorhsGrade" type="number" placeholder="Grade" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="mb-1"><strong>Year Completed</strong></label>
+                                                <input class="form-control py-4" name="Name" id="inputSeniorhsYear"
+                                                    type="number" placeholder="Year Completed" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="mb-1"><strong>Strand</strong></label>
+                                                <input class="form-control py-4" name="Strand" id="inputSeniorhsStrand"
+                                                    type="text" placeholder="Strand" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="mb-1 mt-2"><strong>Achievements</strong></label>
+                                            <input class="form-control py-4" name="Achievements"
+                                                id="inputSeniorhsAchieve" type="text" placeholder="Achievements" />
+                                        </div>
+                                        <h3 class="text-center mt-4">College</h3>
+
+                                        <div class="form-row">
+                                            <div class="col-md-3">
+                                                <label class="mb-1"><strong>School Name</strong></label>
+                                                <input class="form-control py-4" name="collegeName"
+                                                    id="inputCollegeName" type="text" placeholder="School name" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="mb-1"><strong>Level</strong></label>
+                                                <input class="form-control py-4" name="collegeLevel"
+                                                    id="inputSeniorhsGrade" type="number" placeholder="Level" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="mb-1"><strong>Year Completed</strong></label>
+                                                <input class="form-control py-4" name="Name" id="inputCollegeYear"
+                                                    type="number" placeholder="Year Completed" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="mb-1"><strong>Course</strong></label>
+                                                <input class="form-control py-4" name="Course" id="inputCollegeCourse"
+                                                    type="text" placeholder="Course" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="mb-1 mt-2"><strong>Achievements</strong></label>
+                                            <input class="form-control py-4" name="Achievements"
+                                                id="inputCollegeAchieve" type="text" placeholder="Achievements" />
+                                        </div>
+                                        <h3 class="text-center mt-4">Post Graduate</h3>
+
+                                        <div class="form-row">
+                                            <div class="col-md-3">
+                                                <label class="mb-1"><strong>School Name</strong></label>
+                                                <input class="form-control py-4" name="postgradName"
+                                                    id="inputPostGradName" type="text" placeholder="School name" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="mb-1"><strong>Level</strong></label>
+                                                <input class="form-control py-4" name="postgradLevel"
+                                                    id="inputPostGradGrade" type="number" placeholder="Level" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="mb-1"><strong>Year Completed</strong></label>
+                                                <input class="form-control py-4" name="postgradYear"
+                                                    id="inputPostGradYear" type="number" placeholder="Year Completed" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="mb-1"><strong>Course</strong></label>
+                                                <input class="form-control py-4" name="postgradCourse"
+                                                    id="inputPostGradCourse" type="text" placeholder="Course" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="mb-1 mt-2"><strong>Achievements</strong></label>
+                                            <input class="form-control py-4" name="postgradAchievements"
+                                                id="inputPostGradAchieve" type="text" placeholder="Achievements" />
+                                        </div>
+                                        <h3 class="text-center mt-4">Personal Background</h3>
+
+                                        <div class="form-row">
+                                            <div class="col-md-3">
+                                                <label class="mb-1"><strong>Title</strong></label>
+                                                <input class="form-control py-4" name="personalbgTitle"
+                                                    id="inputPostGradTitle" type="text" placeholder="School name" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="mb-1"><strong>Sponsor</strong></label>
+                                                <input class="form-control py-4" name="personalbgSponsor"
+                                                    id="inputPostGradSponsor" type="number" placeholder="Sponsor" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="mb-1"><strong>Date</strong></label>
+                                                <input class="form-control py-4" name="postgradYear"
+                                                    id="inputPostGradYear" type="number" placeholder="Year Completed" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="mb-1"><strong>Venue</strong></label>
+                                                <input class="form-control py-4" name="postgradCourse"
+                                                    id="inputPostVenue" type="text" placeholder="Venue" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mt-4 mb-0" name="submit">
+                                        <input onclick="showAlert()" class="btn btn-primary btn-block" type="submit"
+                                            name="submit" values="Create Account" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="{ static '/js/scripts.js'}"></script>
+</body>
+
+</html>

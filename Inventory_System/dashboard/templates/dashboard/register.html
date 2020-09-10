@@ -1,0 +1,304 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" />
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Page Title - SB Admin</title>
+    <link href="{% static '/css/styles2.css' }" rel="stylesheet" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body class="bg-primary">
+    <div id="layoutAuthentication">
+      <div id="layoutAuthentication_content">
+        <main>
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="card shadow-lg border-0 rounded-lg mt-5">
+                <div class="card-header">
+                  <h3 class="text-center font-weight-light my-4">
+                    Create Account
+                  </h3>
+                </div>
+                <div class="card-body">
+                  <form name="myForm" action="" method="post" required>
+                    <div class="form-row">
+                    </div>
+                    <label class="mb-1"><strong>Name</strong></label>
+                    <div class="form-row">
+                      <div class="col-md-4">
+                        <input
+                          class="form-control py-4"
+                          name="Name"
+                          id="inputFirstName"
+                          type="text"
+                          placeholder="First name"
+                        />
+                      </div>
+                      <div class="col-md-4">
+                        <input
+                          class="form-control py-4"
+                          name="Name"
+                          id="inputFirstName"
+                          type="text"
+                          placeholder="Middle name"
+                        />
+                      </div>
+                      <div class="col-md-4">
+                        <input
+                          class="form-control py-4"
+                          name="Name"
+                          id="inputFirstName"
+                          type="text"
+                          placeholder="Last name"
+                        />
+                      </div>
+                    </div>
+                    <label class="mb-1"><strong>Address</strong></label>
+                    <div class="form-row">
+                      <div class="col-md-4">
+                        <input
+                          class="form-control py-4"
+                          name="Name"
+                          id="inputFirstName"
+                          type="text"
+                          placeholder="Street"
+                        />
+                      </div>
+                      <div class="col-md-4">
+                        <input
+                          class="form-control py-4"
+                          name="Name"
+                          id="inputFirstName"
+                          type="text"
+                          placeholder="Barangay"
+                        />
+                      </div>
+                      <div class="col-md-4">
+                        <input
+                          class="form-control py-4"
+                          name="Name"
+                          id="inputFirstName"
+                          type="text"
+                          placeholder="City"
+                        />
+                      </div>
+                    </div>
+                    <div class="form-row mt-3">
+                      <div class="col-md-4">
+                        <input
+                          class="form-control py-4"
+                          name="Name"
+                          id="inputFirstName"
+                          type="text"
+                          placeholder="Province"
+                        />
+                      </div>
+                      <div class="col-md-4">
+                        <input
+                          class="form-control py-4"
+                          name="Name"
+                          id="inputFirstName"
+                          type="text"
+                          placeholder="Zip"
+                        />
+                      </div>
+                      <div class="col-md-4">
+                        <input
+                          class="form-control py-4"
+                          name="Name"
+                          id="inputFirstName"
+                          type="text"
+                          placeholder="Country"
+                        />
+                      </div>
+                      <div class="form-row">
+                        <div class="col-auto">
+                          <label class="mb-1"><strong>Birthdate</strong></label>
+                          <input
+                            class="form-control py-lg-2"
+                            name="Birthdate"
+                            id="inputBirthdate"
+                            type="date"
+                          />
+                        </div>
+                        <div class="col-auto">
+                          <label class="mb-1"><strong>Status</strong></label>
+                          <select
+                            name="selectStatus"
+                            class="mt-1 form-control drop-down"
+                          >
+                            <option value=""></option>
+                            <option value="Single">Single</option>
+                            <option value="Single">Married</option>
+                            <option value="Single">Widow/er</option>
+                            <option value="Single">Divorced</option>
+                          </select>
+                        </div>
+                        <div class="col-auto">
+                          <label class="mb-1"><strong>Gender</strong></label>
+                          <select
+                            name="selectStatus"
+                            class="mt-1 form-control drop-down"
+                          >
+                            <option class="dropdown-item"></option>
+                            <option value="Single">Male</option>
+                            <option value="Single">Female</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="mb-1"><strong>Spouse's Name</strong></label>
+                      <input
+                        class="form-control py-4"
+                        name="Address"
+                        id="inputFirstName"
+                        type="text"
+                        placeholder="Spouse Name"
+                      />
+                      <div class="form-row">
+                        <div class="col-6">
+                          <label class="mb-1"><strong>Spouse</strong></label>
+                          <input
+                            class="form-control py-4"
+                            name="children"
+                            id="inputFirstName"
+                            type="number"
+                            placeholder="Number of Children"
+                          />
+                        </div>
+                        <div class="col-6">
+                          <label class="mb-1"
+                            ><strong>Number of Children</strong></label
+                          >
+                          <input
+                            class="form-control py-4"
+                            name="children"
+                            id="inputFirstName"
+                            type="number"
+                            placeholder="Number of Children"
+                          />
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="col-6">
+                          <label class="mb-1"
+                            ><strong>Mother's Name</strong></label
+                          >
+                          <input
+                            class="form-control py-4"
+                            name="mother"
+                            id="inputMotherName"
+                            type="text"
+                            placeholder="Mother's Name"
+                          />
+                        </div>
+                        <div class="col-6">
+                          <label class="mb-1"
+                            ><strong>Mother's Occupation</strong></label
+                          >
+                          <input
+                            class="form-control py-4"
+                            name="motherjob"
+                            id="inputMotherJob"
+                            type="text"
+                            placeholder="Mother's Name"
+                          />
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="col-6">
+                          <label class="mb-1"
+                            ><strong>Father's Name</strong></label
+                          >
+                          <input
+                            class="form-control py-4"
+                            name="father"
+                            id="inputFatherName"
+                            type="text"
+                            placeholder="Father's Name"
+                          />
+                        </div>
+                        <div class="col-6">
+                          <label class="mb-1"
+                            ><strong>Father's Occupation</strong></label
+                          >
+                          <input
+                            class="form-control py-4"
+                            name="fatherjob"
+                            id="inputFatherJob"
+                            type="text"
+                            placeholder="Father's Name"
+                          />
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="col-4">
+                          <label class="mb-1"
+                            ><strong>Height(cm)</strong></label
+                          >
+                          <input
+                            class="form-control py-4"
+                            name="height"
+                            id="inputHeight"
+                            type="number"
+                            placeholder="Height in cm"
+                            step=".01"
+                          />
+                        </div>
+                        <div class="col-4">
+                          <label class="mb-1"
+                            ><strong>Weight(Kg)</strong></label
+                          >
+                          <input
+                            class="form-control py-4"
+                            name="Weight"
+                            id="inputWeight"
+                            type="number"
+                            placeholder="Weight in kg"
+                            step=".01"
+                          />
+                        </div>
+                        <div class="col-4">
+                          <label class="mb-1"><strong>Religion</strong></label>
+                          <input
+                            class="form-control py-4"
+                            name="Religion"
+                            id="inputReligion"
+                            type="text"
+                            placeholder="Religion"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group mt-4 mb-0" name="submit">
+                      <a
+                        href="{% url 'dashboard-register2' %}" type="button" class="btn btn-primary btn-block"
+        style="color: white">Next</a>
+    </div>
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    </main>
+    </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="{% static '/js/scripts.js' %}">
+    </script>
+    </body>
+
+</html>
