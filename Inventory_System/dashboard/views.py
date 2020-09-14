@@ -18,6 +18,15 @@ class CustomerView(View):
         return render(request, 'dashboard/register.html')
 
 
+class ProductView(View):
+    def get(self, request):
+        return render(request, 'dashboard/product.html')
+
+    def post(self, request):
+        # change register para product here
+        return render(request, 'dashboard/register.html')
+
+
 def register(request):
     return render(request, 'dashboard/register.html')
 
