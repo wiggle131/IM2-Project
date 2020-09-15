@@ -1,118 +1,160 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"
+    />
 
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
-    <link rel="stylesheet" href="{% static '/css/main.css' %}">
+    <link rel="stylesheet" href="{% static '/css/main.css' %}" />
     {% if title %}
     <title>Inventory System - {{ title }}</title>
     {% else %}
-    <title>Inventory System </title>
+    <title>Inventory System</title>
     {% endif %}
 
     <style>
-        body {
-            background-color: #1A1A2E;
-            color: white;
-        }
+      body {
+        background-color: #1a1a2e;
+        color: white;
+      }
 
-        .text-color {
-            color: #0F3460;
-        }
+      .text-color {
+        color: #0f3460;
+      }
 
-        .menu:hover {
-            background-color: #83b2ec;
-            color: white;
-        }
+      .menu:hover {
+        background-color: #83b2ec;
+        color: white;
+      }
 
-        .border-top {
-            border-top-left-radius: 64px;
-            border-top-right-radius: 64px;
-        }
+      .border-top {
+        border-top-left-radius: 64px;
+        border-top-right-radius: 64px;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <div class="mt-10 mx-8">
-        <div class="h-screen flex">
-            <div class="w-1/4 fixed">
-                <!-- Sidebar content -->
-                <div class="  shadow-2xl mr-8 bg-white h-screen p-6 pt-10 border-top">
-                    <div class="flex items-center mb-10">
-                        <img class="w-12 mr-2" src="{% static '/img/paint.png' %}" alt="Logo">
-                        <span class="text-2xl font-extrabold text-color ">Inventory System</span>
-                    </div>
-
-                    <!-- User -->
-
-
-                    <!-- Menu-->
-                    <div>
-                        <a href="{% url 'dashboard-home' %}" class="w-full menu">
-                            <div class="h-16  flex p-3 mb-4 menu font-bold hover:font-extrabold"
-                                style="border-radius: 20px;">
-                                <div class="flex justify-start">
-                                    <div class="flex items-center">
-                                        <img class="w-10 mr-5 " src="{% static '/img/home1.png' %}" alt="home">
-                                        <span class="text-xl text-color ">Home</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="{% url 'dashboard-customer' %}" class="w-full">
-                            <div class="h-16  flex p-3 mb-4  menu font-bold hover:font-extrabold"
-                                style="border-radius: 20px;">
-                                <div class="flex items-center">
-                                    <img class="w-10 mr-5 " src="{% static '/img/user1.png' %}" alt="customer">
-                                    <span class="text-xl text-color">Customer</span>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="{% url 'dashboard-product' %}" class="w-full">
-                            <div class="h-16  flex p-3 mb-4  menu font-bold hover:font-extrabold"
-                                style="border-radius: 20px;">
-
-                                <div class="flex items-center">
-                                    <img class="w-10 mr-5 " src="{% static '/img/product.png' %}" alt="products">
-                                    <span class="text-xl text-color">Products</span>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="w-full">
-                            <div class="h-16  flex p-3 mb-4  menu font-bold hover:font-extrabold"
-                                style="border-radius: 20px;">
-                                <div class="flex items-center">
-                                    <img class="w-10 mr-5 " src="{% static '/img/statistics.png' %}" alt="analytics">
-                                    <span class="text-xl  text-color">Analytics</span>
-                                </div>
-                            </div>
-                        </a>
-                        <div class="border-b mt-20 border-gray-400"></div>
-                    </div>
-                </div>
+      <div class="h-screen flex">
+        <div class="w-1/4 fixed">
+          <!-- Sidebar content -->
+          <div class="shadow-2xl mr-8 bg-white h-screen p-6 pt-10 border-top">
+            <div class="flex items-center mb-10">
+              <img
+                class="w-12 mr-2"
+                src="{% static '/img/paint.png' %}"
+                alt="Logo"
+              />
+              <span class="text-2xl font-extrabold text-color"
+                >Inventory System</span
+              >
             </div>
-            <!-- Sidebar content -->
 
+            <!-- User -->
 
-            <!-- Scroll wrapper -->
-            <div class="flex-1 flex overflow-visible " style="margin-left: 25%; ">
-                <!-- Scrollable container -->
-                <div class="flex-1 overflow ml-4 mt-8 flex-wrap">
-                    {% block content %}{% endblock %}
-                </div> <!-- Scrollable container End -->
-            </div><!-- Scroll wrapper -->
+            <!-- Menu-->
+            <div>
+              <a href="{% url 'dashboard-home' %}" class="w-full menu">
+                <div
+                  class="h-16 flex p-3 mb-4 menu font-bold hover:font-extrabold"
+                  style="border-radius: 20px"
+                >
+                  <div class="flex justify-start">
+                    <div class="flex items-center">
+                      <img
+                        class="w-10 mr-5"
+                        src="{% static '/img/home1.png' %}"
+                        alt="home"
+                      />
+                      <span class="text-xl text-color">Home</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <a href="{% url 'dashboard-customer' %}" class="w-full">
+                <div
+                  class="h-16 flex p-3 mb-4 menu font-bold hover:font-extrabold"
+                  style="border-radius: 20px"
+                >
+                  <div class="flex items-center">
+                    <img
+                      class="w-10 mr-5"
+                      src="{% static '/img/user1.png' %}"
+                      alt="customer"
+                    />
+                    <span class="text-xl text-color">Customer</span>
+                  </div>
+                </div>
+              </a>
+              <a href="{% url 'dashboard-product' %}" class="w-full">
+                <div
+                  class="h-16 flex p-3 mb-4 menu font-bold hover:font-extrabold"
+                  style="border-radius: 20px"
+                >
+                  <div class="flex items-center">
+                    <img
+                      class="w-10 mr-5"
+                      src="{% static '/img/product.png' %}"
+                      alt="products"
+                    />
+                    <span class="text-xl text-color">Products</span>
+                  </div>
+                </div>
+              </a>
+              <a href="#" class="w-full">
+                <div
+                  class="h-16 flex p-3 mb-4 menu font-bold hover:font-extrabold"
+                  style="border-radius: 20px"
+                >
+                  <div class="flex items-center">
+                    <img
+                      class="w-10 mr-5"
+                      src="{% static '/img/statistics.png' %}"
+                      alt="analytics"
+                    />
+                    <span class="text-xl text-color">Analytics</span>
+                  </div>
+                </div>
+              </a>
+              <div class="border-b mt-20 border-gray-400"></div>
+            </div>
+          </div>
         </div>
+        <!-- Sidebar content -->
+
+        <!-- Scroll wrapper -->
+        <div class="flex-1 flex overflow-visible" style="margin-left: 25%">
+          <!-- Scrollable container -->
+          <div class="flex-1 overflow ml-4 mt-8 flex-wrap">
+            {% block content %}{% endblock %}
+          </div>
+          <!-- Scrollable container End -->
+        </div>
+        <!-- Scroll wrapper -->
+      </div>
     </div>
-
-</body>
-
+  </body>
 </html>

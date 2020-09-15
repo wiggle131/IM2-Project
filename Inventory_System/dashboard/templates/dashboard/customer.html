@@ -5,7 +5,13 @@
   <div>
     <h1 class="font-bold text-4xl mb-2">Customer</h1>
   </div>
-  <div>
+  <div class="flex justify-between mr-6">
+    <button
+      class="bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-5"
+      id="btnExport"
+    >
+      Export
+    </button>
     <form action="" method="POST">
       {% csrf_token %}
       <button
@@ -18,50 +24,50 @@
 </div>
 
 <!--Container-->
-<div class="container">
-  <!--Card-->
-  <div
-    id="recipients"
-    class="p-8 mt-6 lg:mt-0 rounded shadow bg-white text-color"
+<div class="container"></div>
+<!--Card-->
+<div
+  id="recipients"
+  class="p-8 mt-6 lg:mt-0 rounded shadow bg-white text-color"
+>
+  <table
+    id="table"
+    class="stripe hover"
+    style="width: 100%; padding-top: 1em; padding-bottom: 1em"
   >
-    <table
-      id="table"
-      class="stripe hover"
-      style="width: 100%; padding-top: 1em; padding-bottom: 1em"
-    >
-      <thead>
-        <tr>
-          <th data-priority="1">Name</th>
-          <th data-priority="2">Position</th>
-          <th data-priority="3">Office</th>
-          <th data-priority="4">Age</th>
-          <th data-priority="5">Start date</th>
-          <th data-priority="6">Salary</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Tiger Nixon</td>
-          <td>System Architect</td>
-          <td>Edinburgh</td>
-          <td>61</td>
-          <td>2011/04/25</td>
-          <td>$320,800</td>
-        </tr>
+    <thead>
+      <tr>
+        <th data-priority="1">Name</th>
+        <th data-priority="2">Position</th>
+        <th data-priority="3">Office</th>
+        <th data-priority="4">Age</th>
+        <th data-priority="5">Start date</th>
+        <th data-priority="6">Salary</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Tiger Nixon</td>
+        <td>System Architect</td>
+        <td>Edinburgh</td>
+        <td>61</td>
+        <td>2011/04/25</td>
+        <td>$320,800</td>
+      </tr>
 
-        <tr>
-          <td>Donna Snider</td>
-          <td>Customer Support</td>
-          <td>New York</td>
-          <td>27</td>
-          <td>2011/01/25</td>
-          <td>$112,000</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <!--/Card-->
+      <tr>
+        <td>Donna Snider</td>
+        <td>Customer Support</td>
+        <td>New York</td>
+        <td>27</td>
+        <td>2011/01/25</td>
+        <td>$112,000</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
+<!--/Card-->
+
 <!--/container-->
 
 <!-- jQuery -->
@@ -69,6 +75,7 @@
   type="text/javascript"
   src="https://code.jquery.com/jquery-3.5.1.js"
 ></script>
+<script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script>
 
 <!--Datatables -->
 <script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
@@ -78,6 +85,17 @@
 <script>
   $(document).ready(function () {
     $("#table").DataTable();
+
+    $("#btnExport").click(function () {
+      let table = document.getElementsByTagName("table");
+      TableToExcel.convert(table[0], {
+        // html code may contain multiple tables so here we are refering to 1st table tag
+        name: `customer.xlsx`, // fileName you could use any name
+        sheet: {
+          name: "Sheet 1", // sheetName
+        },
+      });
+    });
   });
 </script>
 
