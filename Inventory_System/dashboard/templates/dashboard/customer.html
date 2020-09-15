@@ -1,11 +1,29 @@
 {% extends "dashboard/base.html" %} {% load static %} {% block content %}
 <!--Table -->
 
-<div class="flex justify-between mb-10">
+<div class="flex justify-between mb-1">
   <div>
-    <h1 class="font-bold text-4xl mb-2">Customer</h1>
+    <h1 class="font-bold text-4xl mb-5">Customer</h1>
   </div>
   <div class="flex justify-between mr-6">
+    <p class="text-white font-bold py-2 pl-4 rounded m-5">Start Date:</p>
+    <input
+      type="date"
+      class="datepicker text-black font-bold py-2 pr-4 rounded mr-5 my-5"
+      id="#start_date"
+    />
+    <p class="text-white font-bold py-2 pl-4 rounded m-5">End Date:</p>
+    <input
+      type="date"
+      class="datepicker text-black font-bold py-2 pr-4 rounded mr-5 my-5"
+      id="#end_date"
+    />
+    <button
+      class="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-5"
+      id="filter"
+    >
+      Filter
+    </button>
     <button
       class="bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-5"
       id="btnExport"
@@ -76,6 +94,14 @@
   src="https://code.jquery.com/jquery-3.5.1.js"
 ></script>
 <script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script>
+<script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"
+></script>
+<script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"
+></script>
 
 <!--Datatables -->
 <script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
