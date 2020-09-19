@@ -10,4 +10,6 @@ urlpatterns = [
          name='dashboard-product'),
     path('dashboard/customer/registration', views.CustomerRegistrationView.as_view(),
          name='dashboard-register'),
+    path('dashboard/product/registration', views.ProductRegistrationView.as_view(),
+         name='dashboard-register_prod'),
 ]

@@ -52,3 +52,30 @@ class CustomerRegistrationView(View):
             return render(request, 'dashboard/customer.html')
         else:
             return HttpResponse('failed')
+
+
+class ProductRegistrationView(View):
+    def get(self, request):
+        return render(request, 'dashboard/register_prod.html')
+
+    def post(self, request):
+        print('yow')
+        form = CustomerForm(request.POST)
+        if form.is_valid():
+            fname = request.POST.get("firstname")
+            mname = request.POST.get("middlename")
+            lname = request.POST.get("lastname")
+            bday = request.POST.get("birthday")
+            gender = request.POST.get("gender")
+            status = request.POST.get("status")
+            address = request.POST.get("address")
+            province = request.POST.get("province")
+            zipcode = request.POST.get("zipcode")
+            country = request.POST.get("country")
+            form = Customer(firstname=fname, middlename=mname, lastname=lname, birthday=bday, gender=gender,
+                            status=status, address=address, province=province, zipcode=zipcode, country=country)
+            form.save()
+
+            return render(request, 'dashboard/product.html')
+        else:
+            return HttpResponse('failed')
