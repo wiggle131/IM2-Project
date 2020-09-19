@@ -30,14 +30,14 @@
     >
       Export
     </button>
-    <form action="" method="POST">
-      {% csrf_token %}
-      <button
+    <div>
+      <a
+        href="{% url 'dashboard-register' %}"
         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-5"
+        type="button"
+        >Add Customer</a
       >
-        Add Customer
-      </button>
-    </form>
+    </div>
   </div>
 </div>
 

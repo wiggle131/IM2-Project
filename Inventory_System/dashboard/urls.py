@@ -8,6 +8,6 @@ urlpatterns = [
          name='dashboard-customer'),
     path('dashboard/product/', views.ProductView.as_view(),
          name='dashboard-product'),
-    path('dashboard/register/', views.register, name='dashboard-register'),
-    path('dashboard/register2/', views.register2, name='dashboard-register2'),
+    path('dashboard/customer/registration', views.CustomerRegistrationView.as_view(),
+         name='dashboard-register'),
 ]
