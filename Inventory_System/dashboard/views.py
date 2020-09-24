@@ -20,7 +20,8 @@ class CustomerView(View):
 
 class ProductView(View):
     def get(self, request):
-        return render(request, 'dashboard/product.html')
+        products = Product.objects.all()
+        return render(request, "dashboard/product.html", {'product': products})
 
    # def post(self, request):
         # change register para product here
@@ -41,8 +42,8 @@ class ProductRegistrationView(View):
             size = request.POST.get("size")
             price = request.POST.get("price")
             no_stock = request.POST.get("no_stocks")
-            form = Product(productname=pname, brand=brand,
-                           color=color, size=size, price=price, no_stocks=no_stock)
+            form = Product(productname=pname, brand=brand, color=color,
+                           size=size, price=price, no_stocks=no_stock)
             form.save()
 
             return render(request, 'dashboard/product.html')
