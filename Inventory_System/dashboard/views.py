@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import View
 from django.http import HttpResponse
 from .forms import CustomerForm, ProductForm
@@ -15,7 +15,8 @@ def home(request):
 
 class CustomerView(View):
     def get(self, request):
-        return render(request, 'dashboard/customer.html')
+        customers = Customer.objects.all()
+        return render(request, 'dashboard/customer.html',{'customer': customers})
 
 
 class ProductView(View):
@@ -42,7 +43,7 @@ class ProductRegistrationView(View):
                            size=size, price=price, no_stocks=no_stock)
             form.save()
 
-            return render(request, 'dashboard/product.html')
+            return redirect('dashboard-product')
         else:
             return HttpResponse('failed')
 
@@ -69,6 +70,6 @@ class CustomerRegistrationView(View):
                             status=status, address=address, province=province, zipcode=zipcode, country=country)
             form.save()
 
-            return render(request, 'dashboard/customer.html')
+            return redirect('dashboard-customer')
         else:
             return HttpResponse('failed')

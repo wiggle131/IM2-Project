@@ -55,32 +55,35 @@
   >
     <thead>
       <tr>
-        <th data-priority="1">Name</th>
-        <th data-priority="2">Position</th>
-        <th data-priority="3">Office</th>
-        <th data-priority="4">Age</th>
-        <th data-priority="5">Start date</th>
-        <th data-priority="6">Salary</th>
+        <th data-priority="1">Date Registered</th>
+        <th data-priority="2">Firstname</th>
+        <th data-priority="3">Lastname</th>
+        <th data-priority="4">Date of Birth</th>
+        <th data-priority="5">Address</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
+      {% for customer in customer %}
       <tr>
-        <td>Tiger Nixon</td>
-        <td>System Architect</td>
-        <td>Edinburgh</td>
-        <td>61</td>
-        <td>2011/04/25</td>
-        <td>$320,800</td>
+        <td>{{ customer.date_registered|date:"d/m/Y" }}</td>
+        <td>{{ customer.firstname }}</td>
+        <td>{{ customer.lastname }}</td>
+        <td>{{ customer.birthday|date:"d/m/Y" }}</td>
+        <td>{{ customer.address }}</td>
+        <td class="flex justify-end">
+          <a
+            href="#"
+            class="text-indigo-600 hover:text-indigo-900 mr-3 modal-open"
+          >
+            <img class="w-6" src="{% static '/img/eye.png' %}" alt="" />
+          </a>
+          <a href="#" class="text-indigo-600 hover:text-indigo-900">
+            <img class="w-6" src="{% static '/img/delete.png' %}" alt="" />
+          </a>
+        </td>
       </tr>
-
-      <tr>
-        <td>Donna Snider</td>
-        <td>Customer Support</td>
-        <td>New York</td>
-        <td>27</td>
-        <td>2011/01/25</td>
-        <td>$112,000</td>
-      </tr>
+      {% endfor %}
     </tbody>
   </table>
 </div>
