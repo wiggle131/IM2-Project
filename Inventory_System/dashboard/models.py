@@ -2,18 +2,6 @@ from django.db import models
 from django.utils import timezone
 
 
-class Product(models.Model):
-    productname = models.CharField(max_length=100)
-    brand = models.CharField(max_length=100)
-    color = models.CharField(max_length=30)
-    size = models.FloatField()
-    price = models.FloatField()
-    no_stocks = models.IntegerField()
-
-    class Meta:
-        db_table = "Product"
-
-
 class Person(models.Model):
     firstname = models.CharField(max_length=100)
     middlename = models.CharField(max_length=100)
@@ -35,3 +23,15 @@ class Customer(Person):
 
     class Meta:
         db_table = "Customer"
+
+
+class Product(models.Model):
+    productname = models.CharField(max_length=100)
+    brand = models.CharField(max_length=100)
+    color = models.CharField(max_length=30)
+    size = models.FloatField()
+    price = models.FloatField()
+    no_stocks = models.IntegerField()
+
+    class Meta:
+        db_table = "Product"
