@@ -23,10 +23,6 @@ class ProductView(View):
         products = Product.objects.all()
         return render(request, "dashboard/product.html", {'product': products})
 
-   # def post(self, request):
-        # change register para product here
-       # return render(request, 'dashboard/register.html')
-
 
 class ProductRegistrationView(View):
     def get(self, request):
