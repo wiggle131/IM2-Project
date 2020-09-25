@@ -40,6 +40,7 @@
                     class="multisteps-form__progress-btn js-active lobster-head"
                     type="button"
                     title="User Info"
+                    id="userinfo"
                   >
                     Product Info
                   </button>
@@ -55,7 +56,12 @@
             </div>
             <div class="row">
               <div class="col-12 col-lg-8 m-auto">
-                <form class="multisteps-form__form" method="POST" action="">
+                <form
+                  name="myForm"
+                  class="multisteps-form__form"
+                  method="POST"
+                  action=""
+                >
                   {% csrf_token %}
                   <div
                     class="multisteps-form__panel shadow p-4 rounded bg-white js-active"
@@ -75,8 +81,8 @@
                             class="form-control"
                             type="text"
                             placeholder="Product Name"
+                            id="pname"
                             name="productname"
-                            required
                           />
                         </div>
                         <div class="col-12 col-sm-4 mt-4 mt-sm-0">
@@ -85,7 +91,6 @@
                             type="text"
                             placeholder="Brand"
                             name="brand"
-                            required
                           />
                         </div>
                         <div class="col-12 col-sm-4 mt-4 mt-sm-0">
@@ -94,7 +99,6 @@
                             type="text"
                             placeholder="Color"
                             name="color"
-                            required
                           />
                         </div>
                       </div>
@@ -107,7 +111,6 @@
                             placeholder="Size"
                             name="size"
                             step=".01"
-                            required
                           />
                         </div>
                         <div class="col-12 col-sm-4 mt-4 mt-sm-0">
@@ -126,7 +129,6 @@
                             placeholder="Price"
                             name="price"
                             step=".01"
-                            required
                           />
                         </div>
                         <div class="col-12 col-sm-4 mt-4 mt-sm-0">
@@ -257,69 +259,6 @@
         $(".fathername").removeClass("col-sm-6");
       });
 
-      $(document).ready(function () {
-        $("#elem").hide();
-        $("#junior").hide();
-        $("#senior").hide();
-        $("#college").hide();
-        $("#post").hide();
-        $("#training-0").hide();
-      });
-
-      $("#addElem").click(function () {
-        $("#elem").toggle();
-        var str = $("#addElem").val();
-        console.log(str.length);
-        if (str.length === 3) {
-          $("#addElem").prop("value", "Remove");
-        } else {
-          $("#addElem").prop("value", "Add");
-        }
-      });
-
-      $("#addJunior").click(function () {
-        $("#junior").toggle();
-        var str = $("#addJunior").val();
-        console.log(str.length);
-        if (str.length === 3) {
-          $("#addJunior").prop("value", "Remove");
-        } else {
-          $("#addJunior").prop("value", "Add");
-        }
-      });
-
-      $("#addSenior").click(function () {
-        $("#senior").toggle();
-        var str = $("#addSenior").val();
-        console.log(str.length);
-        if (str.length === 3) {
-          $("#addSenior").prop("value", "Remove");
-        } else {
-          $("#addSenior").prop("value", "Add");
-        }
-      });
-
-      $("#addCollege").click(function () {
-        $("#college").toggle();
-        var str = $("#addCollege").val();
-        console.log(str.length);
-        if (str.length === 3) {
-          $("#addCollege").prop("value", "Remove");
-        } else {
-          $("#addCollege").prop("value", "Add");
-        }
-      });
-
-      $("#addPost").click(function () {
-        $("#post").toggle();
-        var str = $("#addPost").val();
-        console.log(str.length);
-        if (str.length === 3) {
-          $("#addPost").prop("value", "Remove");
-        } else {
-          $("#addPost").prop("value", "Add");
-        }
-      });
       // var x = 1;
       // $("#addTraining").click(function () {
       //   $("#training").toggle();
@@ -335,6 +274,30 @@
       //   var html = '<div class="count "> <div class="d-flex justify-content-between"> <div class="flex">Training</div> <div class="flex"> <input type="button" value="Add" id="addTraining" class="btn ml-auto"style="background-color: #e94560; color: white" /> </div></div><div class="countID"><div class="form-row mt-4"> <div class="col-12 col-sm-6 mt-4 mt-sm-0"><input class="multisteps-form__input form-control" type="text" placeholder="Title" name="title" /> </div> <div class="col-12 col-sm-6 mt-4 mt-sm-0"> <input class="multisteps-form__input form-control" type="text" placeholder="Sponsor" name="sponsor" /> </div> </div> <div class="form-row mt-4"> <div class="col-12 col-sm-6 mt-4 mt-sm-0"> <input class="multisteps-form__input form-control" ="date" name="birthday" required /> </div> <div class="col-12 col-sm-6 mt-4 mt-sm-0"> <input class="multisteps-form__input form-control"type="venue"placeholder="Venue"name="venue"/></div></div></div></div><hr />';
 
       // });
+    </script>
+    <script>
+      //FIX LATER
+      // function validateForm() {
+      //   var pname_flag = false;
+      //   var x = document.forms["myForm"]["productname"].value;
+      //   console.log(x);
+
+      //   if (x == null || x == "") {
+      //     pname_flag = true;
+      //   }
+
+      //   if (pname_flag) {
+      //     alert("Name must be filled out");
+      //     if (!pname_flag)
+      //       document.getElementById("pname").style.border = "3px solid #ced4da";
+
+      //     if (pname_flag)
+      //       document.getElementById("pname").style.border = "3px solid red";
+
+      //     document.getElementById("userinfo").click();
+      //     return false;
+      //   }
+      // }
     </script>
   </body>
 </html>
