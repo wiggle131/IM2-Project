@@ -1,4 +1,43 @@
 {% extends "dashboard/base.html" %} {% load static %} {% block content %}
+<style>
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+    border-radius: 20px;
+    overflow: hidden !important;
+  }
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+</style>
 <!--Table -->
 
 <div class="flex justify-between mb-1">
@@ -72,17 +111,433 @@
         <td>{{ customer.birthday|date:"d/m/Y" }}</td>
         <td>{{ customer.address }}</td>
         <td class="flex justify-end">
-          <a
-            href="#"
-            class="text-indigo-600 hover:text-indigo-900 mr-3 modal-open"
+          <button
+            class="button bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400 text-white font-bold py-2 px-4 rounded"
+            data-modal="customer-{{customer.id}}"
           >
-            <img class="w-6" src="{% static '/img/eye.png' %}" alt="" />
-          </a>
-          <a href="#" class="text-indigo-600 hover:text-indigo-900">
-            <img class="w-6" src="{% static '/img/delete.png' %}" alt="" />
-          </a>
+            View
+          </button>
         </td>
       </tr>
+      <div id="customer-{{customer.id}}" class="modal">
+        <div class="modal-content py-4 text-left px-6">
+          <div class="flex justify-between items-center pb-3">
+            <div class="flex">
+              <img
+                src="{% static '/img/profile.png' %}"
+                alt="profile"
+                class="h-20 w-20 rounded-full border-4 border-white mr-3 ml-2"
+              />
+              <div class="mt-3">
+                <h3 class="font-bold text-2xl uppercase">
+                  {{ customer.lastname }}, {{ customer.firstname }}
+                </h3>
+                <div>
+                  <span
+                    class="text-xs uppercase font-bold text-gray-600 tracking-wide"
+                  >
+                    Date Registered:
+                  </span>
+                  <span class="font-bold text-gray-900 ml-1">
+                    {{ customer.date_registered|date:"d/m/Y" }}
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="cursor-pointer z-50">
+              <a class="close">&times;</a>
+            </div>
+          </div>
+
+          <!--Modal Body-->
+
+          <div class="p-4 model-body">
+            <h3 class="font-bold text-xl uppercase">User Info</h3>
+            <div class="flex grid grid-cols-2 gap-5">
+              <div>
+                <div>
+                  <span class="text-gray-700 text-xs font-bold uppercase"
+                    >Name:
+                  </span>
+                  <span class="text-l text-black font-semibold ml-1"
+                    >{{ customer.firstname }} {{ customer.middlename }}
+                    {{customer.lastname}}</span
+                  >
+                </div>
+                <div>
+                  <span class="text-gray-700 text-xs font-bold uppercase"
+                    >Status:
+                  </span>
+                  <span class="text-l text-black font-semibold ml-1"
+                    >{{ customer.status }}</span
+                  >
+                </div>
+                <div>
+                  <span class="text-gray-700 text-xs font-bold uppercase"
+                    >Address:
+                  </span>
+                  <span class="text-l text-black font-semibold ml-1"
+                    >{{ customer.address }}</span
+                  >
+                </div>
+                <div>
+                  <span class="text-gray-700 text-xs font-bold uppercase"
+                    >Country:
+                  </span>
+                  <span class="text-l text-black font-semibold ml-1"
+                    >{{ customer.country }}</span
+                  >
+                </div>
+                <div>
+                  <span class="text-gray-700 text-xs font-bold uppercase"
+                    >Religion:
+                  </span>
+                  <span class="text-l text-black font-semibold ml-1"
+                    >{{ customer.religion }}</span
+                  >
+                </div>
+              </div>
+
+              <div>
+                <div>
+                  <span class="text-gray-700 text-xs font-bold uppercase"
+                    >Birthday:
+                  </span>
+                  <span class="text-l text-black font-semibold ml-1"
+                    >{{ customer.birthday|date:"F d, Y" }}</span
+                  >
+                </div>
+
+                <div>
+                  <span class="text-gray-700 text-xs font-bold uppercase"
+                    >Gender:
+                  </span>
+                  <span class="text-l text-black font-semibold ml-1"
+                    >{{ customer.gender }}</span
+                  >
+                </div>
+                <div>
+                  <span class="text-gray-700 text-xs font-bold uppercase"
+                    >Zip Code:
+                  </span>
+                  <span class="text-l text-black font-semibold ml-1"
+                    >{{ customer.zipcode }}</span
+                  >
+                </div>
+                <div>
+                  <span class="text-gray-700 text-xs font-bold uppercase"
+                    >Height:
+                  </span>
+                  <span class="text-l text-black font-semibold ml-1"
+                    >{{ customer.height }}</span
+                  >
+                </div>
+                <div>
+                  <span class="text-gray-700 text-xs font-bold uppercase"
+                    >Weight:
+                  </span>
+                  <span class="text-l text-black font-semibold ml-1"
+                    >{{ customer.weight }}</span
+                  >
+                </div>
+              </div>
+            </div>
+            <hr class="my-4" />
+
+            <h3 class="font-bold text-xl uppercase">Personal Info</h3>
+            <div class="flex grid grid-cols-2 gap-5">
+              <div>
+                <div>
+                  <span class="text-gray-700 text-xs font-bold uppercase"
+                    >Spouse's Name:
+                  </span>
+                  <span class="text-l text-black font-semibold ml-1"
+                    >{{ customer.spousename }}
+                  </span>
+                </div>
+                <div>
+                  <span class="text-gray-700 text-xs font-bold uppercase"
+                    >Spouse's Occupation:
+                  </span>
+                  <span class="text-l text-black font-semibold ml-1"
+                    >{{ customer.spouseoccupation }}</span
+                  >
+                </div>
+                <div>
+                  <span class="text-gray-700 text-xs font-bold uppercase"
+                    >Mother's Name:
+                  </span>
+                  <span class="text-l text-black font-semibold ml-1"
+                    >{{ customer.mothername }}</span
+                  >
+                </div>
+                <div>
+                  <span class="text-gray-700 text-xs font-bold uppercase"
+                    >Mother's Occupation:
+                  </span>
+                  <span class="text-l text-black font-semibold ml-1"
+                    >{{ customer.motheroccupation }}</span
+                  >
+                </div>
+              </div>
+
+              <div>
+                <div>
+                  <span class="text-gray-700 text-xs font-bold uppercase"
+                    >No. of Childresn:
+                  </span>
+                  <span class="text-l text-black font-semibold ml-1"
+                    >{{ customer.noOfChildren }}</span
+                  >
+                </div>
+
+                <div>
+                  <span class="text-gray-700 text-xs font-bold uppercase"
+                    >Father's Name:
+                  </span>
+                  <span class="text-l text-black font-semibold ml-1"
+                    >{{ customer.fathername }}</span
+                  >
+                </div>
+                <div>
+                  <span class="text-gray-700 text-xs font-bold uppercase"
+                    >Father's Occupation:
+                  </span>
+                  <span class="text-l text-black font-semibold ml-1"
+                    >{{ customer.fatheroccupation }}</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <hr class="my-4" />
+
+            <h3 class="font-bold text-xl uppercase">Educational Background</h3>
+            <div class="ml-3">
+              <h3 class="font-bold text-l uppercase">Elementary:</h3>
+              <div>
+                <span class="text-gray-700 text-xs font-bold uppercase"
+                  >School:
+                </span>
+                <span class="text-l text-black font-semibold ml-1"
+                  >{{ customer.elemSchool }}
+                </span>
+              </div>
+              <div>
+                <span class="text-gray-700 text-xs font-bold uppercase"
+                  >Grade:
+                </span>
+                <span class="text-l text-black font-semibold ml-1"
+                  >{{ customer.elemGrade }}</span
+                >
+              </div>
+              <div>
+                <span class="text-gray-700 text-xs font-bold uppercase"
+                  >Year Completed:
+                </span>
+                <span class="text-l text-black font-semibold ml-1"
+                  >{{ customer.elemYearCompleted }}</span
+                >
+              </div>
+              <div>
+                <span class="text-gray-700 text-xs font-bold uppercase"
+                  >Awards:
+                </span>
+                <span class="text-l text-black font-semibold ml-1"
+                  >{{ customer.elemAwards }}</span
+                >
+              </div>
+            </div>
+
+            <div class="ml-3">
+              <h3 class="font-bold text-l uppercase">Junior High:</h3>
+              <div>
+                <span class="text-gray-700 text-xs font-bold uppercase"
+                  >School:
+                </span>
+                <span class="text-l text-black font-semibold ml-1"
+                  >{{ customer.jrSchool }}
+                </span>
+              </div>
+              <div>
+                <span class="text-gray-700 text-xs font-bold uppercase"
+                  >Grade:
+                </span>
+                <span class="text-l text-black font-semibold ml-1"
+                  >{{ customer.jrGrade }}</span
+                >
+              </div>
+              <div>
+                <span class="text-gray-700 text-xs font-bold uppercase"
+                  >Year Completed:
+                </span>
+                <span class="text-l text-black font-semibold ml-1"
+                  >{{ customer.jrYearCompleted }}</span
+                >
+              </div>
+              <div>
+                <span class="text-gray-700 text-xs font-bold uppercase"
+                  >Awards:
+                </span>
+                <span class="text-l text-black font-semibold ml-1"
+                  >{{ customer.jrAwards }}</span
+                >
+              </div>
+            </div>
+            <div class="ml-3">
+              <h3 class="font-bold text-l uppercase">Senior High:</h3>
+              <div>
+                <span class="text-gray-700 text-xs font-bold uppercase"
+                  >School:
+                </span>
+                <span class="text-l text-black font-semibold ml-1"
+                  >{{ customer.srSchool }}
+                </span>
+              </div>
+              <div>
+                <span class="text-gray-700 text-xs font-bold uppercase"
+                  >Grade:
+                </span>
+                <span class="text-l text-black font-semibold ml-1"
+                  >{{ customer.srGrade }}</span
+                >
+              </div>
+              <div>
+                <span class="text-gray-700 text-xs font-bold uppercase"
+                  >Year Completed:
+                </span>
+                <span class="text-l text-black font-semibold ml-1"
+                  >{{ customer.srYearCompleted }}</span
+                >
+              </div>
+              <div>
+                <span class="text-gray-700 text-xs font-bold uppercase"
+                  >Awards:
+                </span>
+                <span class="text-l text-black font-semibold ml-1"
+                  >{{ customer.srAwards }}</span
+                >
+              </div>
+            </div>
+            <div class="ml-3">
+              <h3 class="font-bold text-l uppercase">College:</h3>
+              <div>
+                <span class="text-gray-700 text-xs font-bold uppercase"
+                  >School:
+                </span>
+                <span class="text-l text-black font-semibold ml-1"
+                  >{{ customer.collegeSchool }}
+                </span>
+              </div>
+              <div>
+                <span class="text-gray-700 text-xs font-bold uppercase"
+                  >Grade:
+                </span>
+                <span class="text-l text-black font-semibold ml-1"
+                  >{{ customer.collegeGrade }}</span
+                >
+              </div>
+              <div>
+                <span class="text-gray-700 text-xs font-bold uppercase"
+                  >Year Completed:
+                </span>
+                <span class="text-l text-black font-semibold ml-1"
+                  >{{ customer.collegeYearCompleted }}</span
+                >
+              </div>
+              <div>
+                <span class="text-gray-700 text-xs font-bold uppercase"
+                  >Awards:
+                </span>
+                <span class="text-l text-black font-semibold ml-1"
+                  >{{ customer.collegeAwards }}</span
+                >
+              </div>
+            </div>
+            <div class="ml-3">
+              <h3 class="font-bold text-l uppercase">Post Graduate:</h3>
+              <div>
+                <span class="text-gray-700 text-xs font-bold uppercase"
+                  >School:
+                </span>
+                <span class="text-l text-black font-semibold ml-1"
+                  >{{ customer.postSchool }}
+                </span>
+              </div>
+              <div>
+                <span class="text-gray-700 text-xs font-bold uppercase"
+                  >Grade:
+                </span>
+                <span class="text-l text-black font-semibold ml-1"
+                  >{{ customer.postGrade }}</span
+                >
+              </div>
+              <div>
+                <span class="text-gray-700 text-xs font-bold uppercase"
+                  >Year Completed:
+                </span>
+                <span class="text-l text-black font-semibold ml-1"
+                  >{{ customer.postYearCompleted }}</span
+                >
+              </div>
+              <div>
+                <span class="text-gray-700 text-xs font-bold uppercase"
+                  >Awards:
+                </span>
+                <span class="text-l text-black font-semibold ml-1"
+                  >{{ customer.postAwards }}</span
+                >
+              </div>
+            </div>
+            <hr class="my-4" />
+
+            <h3 class="font-bold text-xl uppercase">Professional Background</h3>
+            <div class="ml-3">
+              <h3 class="font-bold text-l uppercase">Trainings:</h3>
+              <div>
+                <span class="text-gray-700 text-xs font-bold uppercase"
+                  >Title:
+                </span>
+                <span class="text-l text-black font-semibold ml-1"
+                  >{{ customer.trainingTitle }}
+                </span>
+              </div>
+              <div>
+                <span class="text-gray-700 text-xs font-bold uppercase"
+                  >Grade:
+                </span>
+                <span class="text-l text-black font-semibold ml-1"
+                  >{{ customer.trainingSponsor }}</span
+                >
+              </div>
+              <div>
+                <span class="text-gray-700 text-xs font-bold uppercase"
+                  >Year Completed:
+                </span>
+                <span class="text-l text-black font-semibold ml-1"
+                  >{{ customer.trainingDate|date:"F d, Y" }}</span
+                >
+              </div>
+              <div>
+                <span class="text-gray-700 text-xs font-bold uppercase"
+                  >Awards:
+                </span>
+                <span class="text-l text-black font-semibold ml-1"
+                  >{{ customer.trainingVenue }}</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="flex justify-end pt-2">
+            <button
+              class="modal-close px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
       {% endfor %}
     </tbody>
   </table>
@@ -126,6 +581,48 @@
       });
     });
   });
+</script>
+<script>
+  (function iife() {
+    "use strict";
+    function closestEl(el, selector) {
+      var doc = el.document || el.ownerDocument;
+      var matches = doc.querySelectorAll(selector);
+      var i;
+      while (el) {
+        i = matches.length - 1;
+        while (i >= 0) {
+          if (matches.item(i) === el) {
+            return el;
+          }
+          i -= 1;
+        }
+        el = el.parentElement;
+      }
+      return el;
+    }
+    var modalBtns = document.querySelectorAll(".button");
+    modalBtns.forEach(function addBtnClickEvent(btn) {
+      btn.onclick = function showModal() {
+        var modal = btn.getAttribute("data-modal");
+        document.getElementById(modal).style.display = "block";
+      };
+    });
+
+    var closeBtns = document.querySelectorAll(".close");
+    closeBtns.forEach(function addCloseClickEvent(btn) {
+      btn.onclick = function closeModal() {
+        var modal = closestEl(btn, ".modal");
+        modal.style.display = "none";
+      };
+    });
+
+    window.onclick = function closeOnClick(event) {
+      if (event.target.className === "modal") {
+        event.target.style.display = "none";
+      }
+    };
+  })();
 </script>
 
 {% endblock content %}
