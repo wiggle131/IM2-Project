@@ -58,7 +58,9 @@
               <div class="col-12 col-lg-8 m-auto">
                 <form
                   name="myForm"
+                  id="myForm"
                   class="multisteps-form__form"
+                  onsubmit="return validateForm()"
                   method="POST"
                   action=""
                 >
@@ -82,6 +84,7 @@
                             type="text"
                             placeholder="Product Name"
                             id="pname"
+                            onInput="checkLength('pname')"
                             name="productname"
                             value="{{product.productname}}"
                           />
@@ -92,6 +95,8 @@
                             type="text"
                             placeholder="Brand"
                             name="brand"
+                            id="brand"
+                            onInput="checkLength('brand')"
                             value="{{product.brand}}"
                           />
                         </div>
@@ -102,6 +107,8 @@
                             placeholder="Color"
                             name="color"
                             value="{{product.color}}"
+                            id="color"
+                            onInput="checkLength('color')"
                           />
                         </div>
                       </div>
@@ -240,28 +247,39 @@
       });
     </script>
     <script>
-      //FIX LATER
-      // function validateForm() {
-      //   var pname_flag = false;
-      //   var x = document.forms["myForm"]["productname"].value;
-      //   console.log(x);
+      function validateForm() {
+        var pname_flag = false;
+        var x = document.forms["myForm"]["productname"].value;
+        console.log(x);
 
-      //   if (x == null || x == "") {
-      //     pname_flag = true;
-      //   }
+        if (x == null || x == "") {
+          pname_flag = true;
+        }
 
-      //   if (pname_flag) {
-      //     alert("Name must be filled out");
-      //     if (!pname_flag)
-      //       document.getElementById("pname").style.border = "3px solid #ced4da";
+        if (pname_flag) {
+          alert("Name must be filled out");
+          if (!pname_flag)
+            document.getElementById("pname").style.border = "3px solid #ced4da";
 
-      //     if (pname_flag)
-      //       document.getElementById("pname").style.border = "3px solid red";
+          if (pname_flag)
+            document.getElementById("pname").style.border = "3px solid red";
 
-      //     document.getElementById("userinfo").click();
-      //     return false;
-      //   }
-      // }
+          document.getElementById("userinfo").click();
+          return false;
+        }
+      }
+      function checkLength(name) {
+        var fieldLength = document.getElementById(name).value.length;
+        //Suppose u want 4 number of character
+        console.log(name);
+        if (fieldLength <= 50) {
+          return true;
+        } else {
+          var str = document.getElementById(name).value;
+          str = str.substring(0, str.length - 1);
+          document.getElementById(name).value = str;
+        }
+      }
     </script>
   </body>
 </html>
