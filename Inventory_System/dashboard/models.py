@@ -19,6 +19,7 @@ class Person(models.Model):
 
 
 class Customer(Person):
+    profile = models.ImageField(null=True, blank=True, upload_to="images/")
     date_registered = models.DateTimeField(default=timezone.now)
 
     class Meta:

@@ -83,6 +83,7 @@
                             placeholder="Product Name"
                             id="pname"
                             name="productname"
+                            value="{{product.productname}}"
                           />
                         </div>
                         <div class="col-12 col-sm-4 mt-4 mt-sm-0">
@@ -91,6 +92,7 @@
                             type="text"
                             placeholder="Brand"
                             name="brand"
+                            value="{{product.brand}}"
                           />
                         </div>
                         <div class="col-12 col-sm-4 mt-4 mt-sm-0">
@@ -99,6 +101,7 @@
                             type="text"
                             placeholder="Color"
                             name="color"
+                            value="{{product.color}}"
                           />
                         </div>
                       </div>
@@ -111,24 +114,17 @@
                             placeholder="Size"
                             name="size"
                             step=".01"
+                            value="{{product.size}}"
                           />
                         </div>
                         <div class="col-12 col-sm-4 mt-4 mt-sm-0">
-                          <!-- <select
-                            class=" form-control"
-                            name="gender"
-                            id="gender"
-                          >
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            <option value="Other">Other</option>
-                          </select> -->
                           <input
                             class="form-control"
                             type="number"
                             placeholder="Price"
                             name="price"
                             step=".01"
+                            value="{{product.price}}"
                           />
                         </div>
                         <div class="col-12 col-sm-4 mt-4 mt-sm-0">
@@ -137,6 +133,7 @@
                             type="number"
                             placeholder="No of Stocks"
                             name="no_stocks"
+                            value="{{product.no_stocks}}"
                           />
                         </div>
                       </div>
@@ -180,6 +177,15 @@
                         >
                           Prev
                         </button>
+                        {% if product != None %}
+                        <button
+                          class="btn ml-auto button"
+                          type="submit"
+                          name="submit"
+                        >
+                          Update
+                        </button>
+                        {% else %}
                         <button
                           class="btn ml-auto button"
                           type="submit"
@@ -187,6 +193,7 @@
                         >
                           Save
                         </button>
+                        {% endif%}
                       </div>
                     </div>
                   </div>
@@ -198,7 +205,7 @@
       </div>
     </div>
 
-    <script src="{% static '/js/register.js' %}"></script>
+    <script src="{% static '/js/register-multi-form.js' %}"></script>
     <script
       src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
       type="text/javascript"
@@ -231,49 +238,6 @@
           imagesPreview(this, "div.gallery");
         });
       });
-      var childdiv;
-      $(document).on("click", ".getStatus", function () {
-        var str = $("#status").val();
-
-        var html = "";
-
-        if (str.length === 7) {
-          html =
-            '<div class="form-row mt-6 spouse"><div class="col-12 col-sm-6"><input class=" form-control"type="text" placeholder="Spouse Name" name="spousename"/> </div> <div class="col-12 col-sm-6 mt-4 mt-sm-0"> <input class="form-control" type="text" placeholder="Spouse Occupation" name="spouseoccupation" /> </div> </div>';
-
-          $(".personal").prepend(html);
-        } else if (str.length == 6) {
-          childdiv = $(".child");
-          $(".child").remove();
-          $(".mothername").addClass("col-sm-6");
-          $(".fathername").addClass("col-sm-6");
-        }
-      });
-
-      $("#prev").click(function () {
-        if (!$(".personal").hasClass("child")) {
-          $(".personal-1").prepend(childdiv);
-        }
-        $(".spouse").remove();
-        $(".mothername").removeClass("col-sm-6");
-        $(".fathername").removeClass("col-sm-6");
-      });
-
-      // var x = 1;
-      // $("#addTraining").click(function () {
-      //   $("#training").toggle();
-      //   var str = $("#addTraining").val();
-      //   console.log(str.length);
-      //   if (str.length === 3) {
-      //     $("#addTraining").prop("value", "Remove");
-      //   } else {
-      //     $("#addTraining").prop("value", "Add");
-      //   }
-      //   var str = "training-" + x;
-      //   x+= 1;
-      //   var html = '<div class="count "> <div class="d-flex justify-content-between"> <div class="flex">Training</div> <div class="flex"> <input type="button" value="Add" id="addTraining" class="btn ml-auto"style="background-color: #e94560; color: white" /> </div></div><div class="countID"><div class="form-row mt-4"> <div class="col-12 col-sm-6 mt-4 mt-sm-0"><input class="multisteps-form__input form-control" type="text" placeholder="Title" name="title" /> </div> <div class="col-12 col-sm-6 mt-4 mt-sm-0"> <input class="multisteps-form__input form-control" type="text" placeholder="Sponsor" name="sponsor" /> </div> </div> <div class="form-row mt-4"> <div class="col-12 col-sm-6 mt-4 mt-sm-0"> <input class="multisteps-form__input form-control" ="date" name="birthday" required /> </div> <div class="col-12 col-sm-6 mt-4 mt-sm-0"> <input class="multisteps-form__input form-control"type="venue"placeholder="Venue"name="venue"/></div></div></div></div><hr />';
-
-      // });
     </script>
     <script>
       //FIX LATER
