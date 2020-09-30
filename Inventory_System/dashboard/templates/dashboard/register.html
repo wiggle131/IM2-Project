@@ -55,6 +55,7 @@
                     class="multisteps-form__progress-btn lobster-head"
                     type="button"
                     title="Order Info"
+                    id="eduTab"
                   >
                     Educational
                   </button>
@@ -381,6 +382,7 @@
                           class="btn ml-auto js-btn-next button"
                           type="button"
                           title="Next"
+                          id="eduNext"
                         >
                           Next
                         </button>
@@ -410,6 +412,7 @@
                           />
                         </div>
                       </div>
+                      {% if customer.elemSchool != None %}
                       <div id="elem">
                         <div class="form-row mt-4">
                           <div class="col-12 col-sm-9 mt-4 mt-sm-0">
@@ -418,6 +421,8 @@
                               type="text"
                               placeholder="School"
                               name="elemSchool"
+                              id="elemSchool"
+                              value="{{ customer.elemSchool }}"
                             />
                           </div>
                           <div class="col-12 col-sm-3 mt-4 mt-sm-0">
@@ -426,6 +431,8 @@
                               type="number"
                               placeholder="Grade"
                               name="elemGrade"
+                              id="elemGrade"
+                              value="{{ customer.elemGrade }}"
                             />
                           </div>
                         </div>
@@ -436,6 +443,8 @@
                               type="text"
                               placeholder="Awards (Ex: Honesty, Punctual...)"
                               name="elemAwards"
+                              id="elemAwards"
+                              value="{{ customer.elemAwards }}"
                             />
                           </div>
                           <div class="col-12 col-sm-3 mt-4 mt-sm-0">
@@ -445,10 +454,57 @@
                               placeholder="Year Completed"
                               oninput="return onlynum()"
                               name="elemYearCompleted"
+                              id="elemYearCompleted"
+                              value="{{ customer.elemCompleted }}"
                             />
                           </div>
                         </div>
                       </div>
+                      {% else %}
+                      <div id="elem">
+                        <div class="form-row mt-4">
+                          <div class="col-12 col-sm-9 mt-4 mt-sm-0">
+                            <input
+                              class="form-control"
+                              type="text"
+                              placeholder="School"
+                              name="elemSchool"
+                              id="elemSchool"
+                            />
+                          </div>
+                          <div class="col-12 col-sm-3 mt-4 mt-sm-0">
+                            <input
+                              class="form-control"
+                              type="number"
+                              placeholder="Grade"
+                              name="elemGrade"
+                              id="elemGrade"
+                            />
+                          </div>
+                        </div>
+                        <div class="form-row mt-4">
+                          <div class="col-12 col-sm-9 mt-4 mt-sm-0">
+                            <input
+                              class="form-control"
+                              type="text"
+                              placeholder="Awards (Ex: Honesty, Punctual...)"
+                              name="elemAwards"
+                              id="elemAwards"
+                            />
+                          </div>
+                          <div class="col-12 col-sm-3 mt-4 mt-sm-0">
+                            <input
+                              class="form-control"
+                              type="number"
+                              placeholder="Year Completed"
+                              oninput="return onlynum()"
+                              name="elemYearCompleted"
+                              id="elemYearCompleted"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      {% endif %}
                       <hr />
                       <div class="d-flex justify-content-between">
                         <div class="flex">Junior High School</div>
@@ -461,6 +517,7 @@
                           />
                         </div>
                       </div>
+                      {% if customer.jsSchool != None %}
                       <div id="junior">
                         <div class="form-row mt-4">
                           <div class="col-12 col-sm-9 mt-4 mt-sm-0">
@@ -469,6 +526,8 @@
                               type="text"
                               placeholder="School"
                               name="juniorSchool"
+                              id="juniorSchool"
+                              value="{{ customer.jsSchool }}"
                             />
                           </div>
                           <div class="col-12 col-sm-3 mt-4 mt-sm-0">
@@ -477,6 +536,8 @@
                               type="number"
                               placeholder="Grade"
                               name="juniorGrade"
+                              id="juniorGrade"
+                              value="{{ customer.jsGrade }}"
                             />
                           </div>
                         </div>
@@ -487,6 +548,8 @@
                               type="text"
                               placeholder="Awards (Ex: Honesty, Punctual...)"
                               name="juniorAwards"
+                              id="juniorAwards"
+                              value="{{ customer.jsAwards }}"
                             />
                           </div>
                           <div class="col-12 col-sm-3 mt-4 mt-sm-0">
@@ -496,10 +559,57 @@
                               placeholder="Year Completed"
                               oninput="return onlynum()"
                               name="juniorYearCompleted"
+                              id="juniorYearCompleted"
+                              value="{{ customer.jsCompleted }}"
                             />
                           </div>
                         </div>
                       </div>
+                      {% else %}
+                      <div id="junior">
+                        <div class="form-row mt-4">
+                          <div class="col-12 col-sm-9 mt-4 mt-sm-0">
+                            <input
+                              class="form-control"
+                              type="text"
+                              placeholder="School"
+                              name="juniorSchool"
+                              id="juniorSchool"
+                            />
+                          </div>
+                          <div class="col-12 col-sm-3 mt-4 mt-sm-0">
+                            <input
+                              class="form-control"
+                              type="number"
+                              placeholder="Grade"
+                              name="juniorGrade"
+                              id="juniorGrade"
+                            />
+                          </div>
+                        </div>
+                        <div class="form-row mt-4">
+                          <div class="col-12 col-sm-9 mt-4 mt-sm-0">
+                            <input
+                              class="form-control"
+                              type="text"
+                              placeholder="Awards (Ex: Honesty, Punctual...)"
+                              name="juniorAwards"
+                              id="juniorAwards"
+                            />
+                          </div>
+                          <div class="col-12 col-sm-3 mt-4 mt-sm-0">
+                            <input
+                              class="form-control"
+                              type="number"
+                              placeholder="Year Completed"
+                              oninput="return onlynum()"
+                              name="juniorYearCompleted"
+                              id="juniorYearCompleted"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      {% endif %}
                       <hr />
                       <div class="d-flex justify-content-between">
                         <div class="flex">Senior High School</div>
@@ -512,6 +622,7 @@
                           />
                         </div>
                       </div>
+                      {% if customer.srSchool != None %}
                       <div id="senior" class="hide">
                         <div class="form-row mt-4">
                           <div class="col-12 col-sm-9 mt-4 mt-sm-0">
@@ -520,6 +631,8 @@
                               type="text"
                               placeholder="School"
                               name="seniorSchool"
+                              id="seniorSchool"
+                              value="{{ customer.srSchool }}"
                             />
                           </div>
                           <div class="col-12 col-sm-3 mt-4 mt-sm-0">
@@ -528,6 +641,8 @@
                               type="number"
                               placeholder="Grade"
                               name="seniorGrade"
+                              id="seniorGrade"
+                              value="{{ customer.srGrade }}"
                             />
                           </div>
                         </div>
@@ -538,6 +653,8 @@
                               type="text"
                               placeholder="Awards (Ex: Honesty, Punctual...)"
                               name="seniorAwards"
+                              id="seniorAwards"
+                              value="{{ customer.srAwards }}"
                             />
                           </div>
                           <div class="col-12 col-sm-3 mt-4 mt-sm-0">
@@ -547,10 +664,57 @@
                               placeholder="Year Completed"
                               oninput="return onlynum()"
                               name="seniorYearCompleted"
+                              id="seniorYearCompleted"
+                              value="{{ customer.srCompleted }}"
                             />
                           </div>
                         </div>
                       </div>
+                      {% else %}
+                      <div id="senior" class="hide">
+                        <div class="form-row mt-4">
+                          <div class="col-12 col-sm-9 mt-4 mt-sm-0">
+                            <input
+                              class="form-control"
+                              type="text"
+                              placeholder="School"
+                              name="seniorSchool"
+                              id="seniorSchool"
+                            />
+                          </div>
+                          <div class="col-12 col-sm-3 mt-4 mt-sm-0">
+                            <input
+                              class="form-control"
+                              type="number"
+                              placeholder="Grade"
+                              name="seniorGrade"
+                              id="seniorGrade"
+                            />
+                          </div>
+                        </div>
+                        <div class="form-row mt-4">
+                          <div class="col-12 col-sm-9 mt-4 mt-sm-0">
+                            <input
+                              class="form-control"
+                              type="text"
+                              placeholder="Awards (Ex: Honesty, Punctual...)"
+                              name="seniorAwards"
+                              id="seniorAwards"
+                            />
+                          </div>
+                          <div class="col-12 col-sm-3 mt-4 mt-sm-0">
+                            <input
+                              class="form-control"
+                              type="number"
+                              placeholder="Year Completed"
+                              oninput="return onlynum()"
+                              name="seniorYearCompleted"
+                              id="seniorYearCompleted"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      {% endif %}
                       <hr />
                       <div class="d-flex justify-content-between">
                         <div class="flex">College</div>
@@ -563,6 +727,7 @@
                           />
                         </div>
                       </div>
+                      {% if customer.collegeSchool != None %}
                       <div id="college">
                         <div class="form-row mt-4">
                           <div class="col-12 col-sm-9 mt-4 mt-sm-0">
@@ -571,6 +736,8 @@
                               type="text"
                               placeholder="School"
                               name="collegeSchool"
+                              id="collegeSchool"
+                              value="{{ customer.collegeSchool }}"
                             />
                           </div>
                           <div class="col-12 col-sm-3 mt-4 mt-sm-0">
@@ -579,6 +746,8 @@
                               type="number"
                               placeholder="Grade"
                               name="collegeGrade"
+                              id="collegeGrade"
+                              value="{{ customer.collegeGrade }}"
                             />
                           </div>
                         </div>
@@ -589,6 +758,8 @@
                               type="text"
                               placeholder="Awards (Ex: Honesty, Punctual...)"
                               name="collegeAwards"
+                              id="collegeAwards"
+                              value="{{ customer.collegeAwards }}"
                             />
                           </div>
                           <div class="col-12 col-sm-3 mt-4 mt-sm-0">
@@ -598,10 +769,57 @@
                               placeholder="Year Completed"
                               oninput="return onlynum()"
                               name="collegeYearCompleted"
+                              id="collegeYearCompleted"
+                              value="{{ customer.collegeCompleted }}"
                             />
                           </div>
                         </div>
                       </div>
+                      {% else %}
+                      <div id="college">
+                        <div class="form-row mt-4">
+                          <div class="col-12 col-sm-9 mt-4 mt-sm-0">
+                            <input
+                              class="form-control"
+                              type="text"
+                              placeholder="School"
+                              name="collegeSchool"
+                              id="collegeSchool"
+                            />
+                          </div>
+                          <div class="col-12 col-sm-3 mt-4 mt-sm-0">
+                            <input
+                              class="form-control"
+                              type="number"
+                              placeholder="Grade"
+                              name="collegeGrade"
+                              id="collegeGrade"
+                            />
+                          </div>
+                        </div>
+                        <div class="form-row mt-4">
+                          <div class="col-12 col-sm-9 mt-4 mt-sm-0">
+                            <input
+                              class="form-control"
+                              type="text"
+                              placeholder="Awards (Ex: Honesty, Punctual...)"
+                              name="collegeAwards"
+                              id="collegeAwards"
+                            />
+                          </div>
+                          <div class="col-12 col-sm-3 mt-4 mt-sm-0">
+                            <input
+                              class="form-control"
+                              type="number"
+                              placeholder="Year Completed"
+                              oninput="return onlynum()"
+                              name="collegeYearCompleted"
+                              id="collegeYearCompleted"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      {% endif %}
                       <hr />
                       <div class="d-flex justify-content-between">
                         <div class="flex">Post Graduate</div>
@@ -614,6 +832,7 @@
                           />
                         </div>
                       </div>
+                      {% if customer.postSchool != None %}
                       <div id="post">
                         <div class="form-row mt-4">
                           <div class="col-12 col-sm-9 mt-4 mt-sm-0">
@@ -622,6 +841,8 @@
                               type="text"
                               placeholder="School"
                               name="postSchool"
+                              id="postSchool"
+                              value="{{ customer.postSchool }}"
                             />
                           </div>
                           <div class="col-12 col-sm-3 mt-4 mt-sm-0">
@@ -630,6 +851,8 @@
                               type="number"
                               placeholder="Grade"
                               name="postGrade"
+                              id="postGrade"
+                              value="{{ customer.postGrade }}"
                             />
                           </div>
                         </div>
@@ -640,6 +863,8 @@
                               type="text"
                               placeholder="Awards (Ex: Honesty, Punctual...)"
                               name="postawards"
+                              id="postawards"
+                              value="{{ customer.postAwards }}"
                             />
                           </div>
                           <div class="col-12 col-sm-3 mt-4 mt-sm-0">
@@ -649,10 +874,57 @@
                               placeholder="Year Completed"
                               oninput="return onlynum()"
                               name="postYearCompleted"
+                              id="postYearCompleted"
+                              value="{{ customer.postCompleted }}"
                             />
                           </div>
                         </div>
                       </div>
+                      {% else %}
+                      <div id="post">
+                        <div class="form-row mt-4">
+                          <div class="col-12 col-sm-9 mt-4 mt-sm-0">
+                            <input
+                              class="form-control"
+                              type="text"
+                              placeholder="School"
+                              name="postSchool"
+                              id="postSchool"
+                            />
+                          </div>
+                          <div class="col-12 col-sm-3 mt-4 mt-sm-0">
+                            <input
+                              class="form-control"
+                              type="number"
+                              placeholder="Grade"
+                              name="postGrade"
+                              id="postGrade"
+                            />
+                          </div>
+                        </div>
+                        <div class="form-row mt-4">
+                          <div class="col-12 col-sm-9 mt-4 mt-sm-0">
+                            <input
+                              class="form-control"
+                              type="text"
+                              placeholder="Awards (Ex: Honesty, Punctual...)"
+                              name="postawards"
+                              id="postawards"
+                            />
+                          </div>
+                          <div class="col-12 col-sm-3 mt-4 mt-sm-0">
+                            <input
+                              class="form-control"
+                              type="number"
+                              placeholder="Year Completed"
+                              oninput="return onlynum()"
+                              name="postYearCompleted"
+                              id="postYearCompleted"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      {% endif %}
                       <hr />
                       <div class="row">
                         <div class="button-row d-flex mt-4 col-12">

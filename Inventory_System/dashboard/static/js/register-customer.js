@@ -35,21 +35,66 @@ $(document).ready(function () {
   $("#training-0").hide();
 });
 
+$("#eduTab").click(function () {
+  if ($("#elemSchool").val().length > 0) {
+    $("#elem").toggle();
+    $("#addElem").prop("value", "Remove");
+  }
+  if ($("#juniorSchool").val().length > 0) {
+    $("#junior").toggle();
+    $("#addJunior").prop("value", "Remove");
+  }
+  if ($("#seniorSchool").val().length > 0) {
+    $("#senior").toggle();
+    $("#addSenior").prop("value", "Remove");
+  }
+  if ($("#collegeSchool").val().length > 0) {
+    $("#college").toggle();
+    $("#addCollege").prop("value", "Remove");
+  }
+  if ($("#postSchool").val().length > 0) {
+    $("#post").toggle();
+    $("#addPost").prop("value", "Remove");
+  }
+});
+
+$("#eduNext").click(function () {
+  if ($("#elemSchool").val().length > 0) {
+    $("#elem").toggle();
+    $("#addElem").prop("value", "Remove");
+  }
+  if ($("#juniorSchool").val().length > 0) {
+    $("#junior").toggle();
+    $("#addJunior").prop("value", "Remove");
+  }
+  if ($("#seniorSchool").val().length > 0) {
+    $("#senior").toggle();
+    $("#addSenior").prop("value", "Remove");
+  }
+  if ($("#collegeSchool").val().length > 0) {
+    $("#college").toggle();
+    $("#addCollege").prop("value", "Remove");
+  }
+  if ($("#postSchool").val().length > 0) {
+    $("#post").toggle();
+    $("#addPost").prop("value", "Remove");
+  }
+});
+
 $("#addElem").click(function () {
   $("#elem").toggle();
   var str = $("#addElem").val();
-  console.log(str.length);
   if (str.length === 3) {
     $("#addElem").prop("value", "Remove");
   } else {
     $("#addElem").prop("value", "Add");
+    $("#elemSchool").removeAttr("value");
   }
 });
 
 $("#addJunior").click(function () {
   $("#junior").toggle();
   var str = $("#addJunior").val();
-  console.log(str.length);
   if (str.length === 3) {
     $("#addJunior").prop("value", "Remove");
   } else {
@@ -60,7 +105,6 @@ $("#addJunior").click(function () {
 $("#addSenior").click(function () {
   $("#senior").toggle();
   var str = $("#addSenior").val();
-  console.log(str.length);
   if (str.length === 3) {
     $("#addSenior").prop("value", "Remove");
   } else {
@@ -71,7 +115,6 @@ $("#addSenior").click(function () {
 $("#addCollege").click(function () {
   $("#college").toggle();
   var str = $("#addCollege").val();
-  console.log(str.length);
   if (str.length === 3) {
     $("#addCollege").prop("value", "Remove");
   } else {
@@ -82,13 +125,13 @@ $("#addCollege").click(function () {
 $("#addPost").click(function () {
   $("#post").toggle();
   var str = $("#addPost").val();
-  console.log(str.length);
   if (str.length === 3) {
     $("#addPost").prop("value", "Remove");
   } else {
     $("#addPost").prop("value", "Add");
   }
 });
+
 $(function () {
   $("input[name='numonly']").on("input", function (e) {
     $(this).val(

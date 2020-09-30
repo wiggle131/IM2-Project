@@ -81,9 +81,9 @@ class CustomerRegistrationView(View):
             profile = request.POST.get("profileImage")
             email = request.POST.get("email")
             phoneNumber = request.POST.get("phoneNumber")
-
+            elemSchool = request.POST.get("elemSchool")
             form = Customer(firstname=fname, middlename=mname, lastname=lname, birthday=bday, gender=gender,
-                            status=status, address=address, province=province, zipcode=zipcode, country=country, profile=profile, email=email, phoneNumber=phoneNumber)
+                            status=status, address=address, province=province, zipcode=zipcode, country=country, profile=profile, email=email, phoneNumber=phoneNumber, elemSchool=elemSchool)
             form.save()
 
             return redirect('dashboard-customer')
@@ -131,8 +131,9 @@ class CustomerUpdateView(View):
             profile = request.POST.get("profileImage")
             email = request.POST.get("email")
             phoneNumber = request.POST.get("phoneNumber")
+            elemSchool = request.POST.get("elemSchool")
             update_customer = Customer.objects.filter(person_ptr_id=pk).update(firstname=fname, middlename=mname, lastname=lname, birthday=bday, gender=gender,
-                                                                               status=status, address=address, province=province, zipcode=zipcode, country=country, profile=profile, email=email, phoneNumber=phoneNumber)
+                                                                               status=status, address=address, province=province, zipcode=zipcode, country=country, profile=profile, email=email, phoneNumber=phoneNumber, elemSchool=elemSchool)
 
             return redirect('dashboard-customer')
         else:

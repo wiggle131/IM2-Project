@@ -28,7 +28,7 @@ class Education(models.Model):
         abstract = True
 
 
-class Person(models.Model):
+class Person(Education):
     firstname = models.CharField(max_length=100)
     middlename = models.CharField(max_length=100)
     lastname = models.CharField(max_length=100)
@@ -49,7 +49,6 @@ class Person(models.Model):
 class Customer(Person):
     profile = models.ImageField(null=True, blank=True, upload_to="images/")
     date_registered = models.DateTimeField(default=timezone.now)
-    #education_id = models.OneToOneField(Education, on_delete=models.CASCADE)
 
     class Meta:
         db_table = "Customer"
