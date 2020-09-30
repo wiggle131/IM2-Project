@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import View
 from django.http import HttpResponse
 from .forms import CustomerForm, ProductForm
-from .models import Customer, Product, Person
+from .models import Customer, Product, Person, Education
 
 
 def index(request):
@@ -79,8 +79,11 @@ class CustomerRegistrationView(View):
             zipcode = request.POST.get("zipcode")
             country = request.POST.get("country")
             profile = request.POST.get("profileImage")
+            email = request.POST.get("email")
+            phoneNumber = request.POST.get("phoneNumber")
+
             form = Customer(firstname=fname, middlename=mname, lastname=lname, birthday=bday, gender=gender,
-                            status=status, address=address, province=province, zipcode=zipcode, country=country, profile=profile)
+                            status=status, address=address, province=province, zipcode=zipcode, country=country, profile=profile, email=email, phoneNumber=phoneNumber)
             form.save()
 
             return redirect('dashboard-customer')
@@ -126,8 +129,10 @@ class CustomerUpdateView(View):
             zipcode = request.POST.get("zipcode")
             country = request.POST.get("country")
             profile = request.POST.get("profileImage")
+            email = request.POST.get("email")
+            phoneNumber = request.POST.get("phoneNumber")
             update_customer = Customer.objects.filter(person_ptr_id=pk).update(firstname=fname, middlename=mname, lastname=lname, birthday=bday, gender=gender,
-                                                                               status=status, address=address, province=province, zipcode=zipcode, country=country, profile=profile)
+                                                                               status=status, address=address, province=province, zipcode=zipcode, country=country, profile=profile, email=email, phoneNumber=phoneNumber)
 
             return redirect('dashboard-customer')
         else:
