@@ -124,9 +124,10 @@
                             class="form-control"
                             type="text"
                             placeholder="First Name"
+                            onInput="checkLength('fname')"
                             name="firstname"
                             id="fname"
-                            value="{{ customer.firstname }}"
+                            value="{{customer.firstname}}"
                           />
                         </div>
                         <div class="col-12 col-sm-4 mt-4 mt-sm-0">
@@ -134,7 +135,9 @@
                             class="form-control"
                             type="text"
                             placeholder="Middle Name"
+                            onInput="checkLength('mname')"
                             name="middlename"
+                            id="mname"
                             value="{{ customer.middlename }}"
                           />
                         </div>
@@ -143,6 +146,7 @@
                             class="form-control"
                             type="text"
                             placeholder="Last Name"
+                            onInput="checkLength('lname')"
                             name="lastname"
                             id="lname"
                             value="{{ customer.lastname }}"
@@ -155,6 +159,7 @@
                             class="form-control"
                             type="date"
                             name="birthday"
+                            id="bday"
                             value="{{ customer.birthday|date:'Y-m-d' }}"
                           />
                         </div>
@@ -212,6 +217,8 @@
                             type="Text"
                             placeholder="Email"
                             name="email"
+                            id="email"
+                            onfocusout="ValidateEmail()"
                             value="{{ customer.email }}"
                           />
                         </div>
@@ -220,6 +227,8 @@
                             class="form-control"
                             type="Text"
                             placeholder="Phone number"
+                            oninput="return onlynum()"
+                            maxlength="11"
                             name="phoneNumber"
                             value="{{ customer.phoneNumber }}"
                           />
@@ -230,12 +239,14 @@
                             type="text"
                             placeholder="Country"
                             name="country"
+                            id="country"
+                            onInput="checkLength('country')"
                             value="{{ customer.country }}"
                           />
                         </div>
                       </div>
                       <div class="form-row mt-4">
-                        <div class="col-12 col-sm-7">
+                        <div class="col-12 col-sm-12">
                           <input
                             class="form-control"
                             type="Text"
@@ -244,16 +255,20 @@
                             value="{{ customer.address }}"
                           />
                         </div>
-                        <div class="col-12 col-sm-3 mt-4 mt-sm-0">
+                      </div>
+                      <div class="form-row mt-4">
+                        <div class="col-12 col-sm-4">
                           <input
                             class="form-control"
                             type="Text"
                             placeholder="Province"
+                            id="prov"
+                            onInput="checkLength('prov')"
                             name="province"
                             value="{{ customer.province }}"
                           />
                         </div>
-                        <div class="col-12 col-sm-2 mt-4 mt-sm-0">
+                        <div class="col-12 col-sm-4 mt-4 mt-sm-0">
                           <input
                             class="form-control"
                             type="number"
@@ -304,6 +319,8 @@
                             class="form-control"
                             type="text"
                             placeholder="Mother's Name"
+                            id="mothername"
+                            onInput="checkLength('mothername')"
                             name="mothername"
                           />
                         </div>
@@ -312,6 +329,8 @@
                             class="form-control"
                             type="text"
                             placeholder="Father's Name"
+                            id="fathername"
+                            onInput="checkLength('fathername')"
                             name="fathername"
                           />
                         </div>
@@ -323,6 +342,8 @@
                             type="text"
                             placeholder="Mother's Occupation"
                             name="motherocupation"
+                            id="motherjob"
+                            onInput="checkLength('motherjob')"
                           />
                         </div>
                         <div class="col-12 col-sm-6 mt-4 mt-sm-0">
@@ -331,6 +352,8 @@
                             type="text"
                             placeholder="Father's Occupation"
                             name="fatheroccupation"
+                            id="fatherjob"
+                            onInput="checkLength('fatherjob')"
                           />
                         </div>
                       </div>
@@ -365,6 +388,8 @@
                             type="text"
                             placeholder="Religion"
                             name="Religion"
+                            id="religion"
+                            onInput="checkLength('religion')"
                           />
                         </div>
                       </div>
@@ -418,6 +443,8 @@
                               type="text"
                               placeholder="School"
                               name="elemSchool"
+                              id="elemSchool"
+                              onInput="checkLength('elemSchool')"
                             />
                           </div>
                           <div class="col-12 col-sm-3 mt-4 mt-sm-0">
@@ -469,6 +496,8 @@
                               type="text"
                               placeholder="School"
                               name="juniorSchool"
+                              id="junior"
+                              onInput="checkLength('junior')"
                             />
                           </div>
                           <div class="col-12 col-sm-3 mt-4 mt-sm-0">
@@ -520,6 +549,8 @@
                               type="text"
                               placeholder="School"
                               name="seniorSchool"
+                              id="senior"
+                              onInput="checkLength('senior')"
                             />
                           </div>
                           <div class="col-12 col-sm-3 mt-4 mt-sm-0">
@@ -571,6 +602,8 @@
                               type="text"
                               placeholder="School"
                               name="collegeSchool"
+                              id="college"
+                              onInput="checkLength('college')"
                             />
                           </div>
                           <div class="col-12 col-sm-3 mt-4 mt-sm-0">
@@ -622,6 +655,8 @@
                               type="text"
                               placeholder="School"
                               name="postSchool"
+                              id="postgrad"
+                              onInput="checkLength('postgrad')"
                             />
                           </div>
                           <div class="col-12 col-sm-3 mt-4 mt-sm-0">
@@ -707,6 +742,8 @@
                                 class="form-control"
                                 placeholder="Title"
                                 name="title"
+                                id="title"
+                                onInput="checkLength('title')"
                               />
                             </div>
                             <div class="col-12 col-sm-4 mt-sm-0">
@@ -782,10 +819,16 @@
     <script>
       function validateForm() {
         var fname_flag = false,
-          lname_flag = false;
+          lname_flag = false,
+          bdate_flag = false;
         var x = document.forms["myForm"]["firstname"].value;
         var y = document.forms["myForm"]["lastname"].value;
+        var z = document.forms["myForm"]["birthday"].value;
         console.log(x);
+
+        if (x == null || x == "") {
+          bdate_flag = true;
+        }
 
         if (x == null || x == "") {
           fname_flag = true;
@@ -799,11 +842,39 @@
             document.getElementById("fname").style.border = "3px solid #ced4da";
           if (!lname_flag)
             document.getElementById("lname").style.border = "3px solid #ced4da";
+          if (!bdate_flag)
+            document.getElementById("bdate").style.border = "3px solid #ced4da";
           if (fname_flag)
             document.getElementById("fname").style.border = "3px solid red";
           if (lname_flag)
             document.getElementById("lname").style.border = "3px solid red";
+          if (bdate_flag)
+            document.getElementById("bdate").style.border = "3px solid red";
           document.getElementById("userinfo").click();
+          return false;
+        }
+      }
+
+      function checkLength(name) {
+        var fieldLength = document.getElementById(name).value.length;
+        //Suppose u want 4 number of character
+        console.log(name);
+        if (fieldLength <= 50) {
+          return true;
+        } else {
+          var str = document.getElementById(name).value;
+          str = str.substring(0, str.length - 1);
+          document.getElementById(name).value = str;
+        }
+      }
+
+      function ValidateEmail() {
+        var inputText = document.getElementById("email").value;
+        console.log(inputText);
+        var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        if (!inputText.match(mailformat)) {
+          alert("You have entered an invalid email address!");
+          document.form1.text1.focus();
           return false;
         }
       }
