@@ -18,5 +18,7 @@ urlpatterns = [
          name='dashboard-update-prod'),
     path('dashboard/customer/update/<int:pk>/', views.CustomerUpdateView.as_view(),
          name='dashboard-update-customer'),
+    path('dashboard/orders/', views.OrderView.as_view(),
+         name='dashboard-order'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

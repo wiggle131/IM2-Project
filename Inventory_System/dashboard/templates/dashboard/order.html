@@ -47,7 +47,7 @@
 <!--Table -->
 <div class="flex justify-between mb-1">
   <div>
-    <h1 class="font-bold text-4xl mb-2">Products</h1>
+    <h1 class="font-bold text-4xl mb-2">Orders</h1>
   </div>
   <div class="flex justify-between mr-6">
     <p class="text-white font-bold py-2 pl-4 rounded m-5">Start Date:</p>
@@ -74,14 +74,6 @@
     >
       Export
     </button>
-    <div>
-      <a
-        href="{% url 'dashboard-register_prod' %}"
-        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-5"
-        type="button"
-        >Add Product</a
-      >
-    </div>
   </div>
 </div>
 
@@ -97,52 +89,50 @@
   >
     <thead>
       <tr>
-        <th data-priority="1">Product ID</th>
-        <th data-priority="2">Product Name</th>
-        <th data-priority="3">Brand</th>
-        <th data-priority="4">No of Stocks</th>
-        <th data-priority="5">Price</th>
+        <th data-priority="1">Date of Order</th>
+        <th data-priority="2">Order ID</th>
+        <th data-priority="3">Customer Name</th>
+        <th data-priority="4">Product</th>
+        <th data-priority="5">Status</th>
+        <th data-priority="6">Cost</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
-      {% for product in product %}
+      {% for order in orders %}
       <tr>
-        <td>{{product.id}}</td>
-        <td>{{product.productname}}</td>
-        <td>{{product.brand}}</td>
-        <td>{{product.no_stocks}}</td>
-        <td>{{product.price}}</td>
+        <td>{{ order.date_created|date:"d/m/Y" }}</td>
+        <td>{{ order.id }}</td>
+        <td>{{ order.customer.firstname }} {{ order.customer.lastname }}</td>
+        <td>{{ order.product.productname }}</td>
+        {% if order.status == 'Pending' %}
+        <td class="text-red-600">{{ order.status }}</td>
+        {% else %}
+        <td class="text-green-600">{{ order.status }}</td>
+        {% endif %}
+        <td>{{ order.product.price }}</td>
         <td class="flex justify-end">
           <button
             class="button bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400 text-white font-bold py-2 px-4 rounded mr-3"
-            data-modal="product-view-{{product.id}}"
+            data-modal="order-view-{{order.id}}"
           >
             View
           </button>
           <button
             class="button bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400 text-white font-bold py-2 px-4 rounded"
-            data-modal="product-delete-{{product.id}}"
+            data-modal="order-delete-{{order.id}}"
           >
             Delete
           </button>
         </td>
       </tr>
-      <!-- Modal View-->
-      <div id="product-view-{{product.id}}" class="modal">
+      <div id="order-view-{{order.id}}" class="modal">
         <div class="modal-content py-4 text-left px-6">
           <div class="flex justify-between items-center pb-3">
             <div class="flex justify-center">
               <div class="text-3xl font-bold uppercase tracking-wide">
-                {{product.productname}}
-              </div>
-              <div>
-                <a
-                  href="{% url 'dashboard-update-prod' product.id %}"
-                  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded mt-2 ml-3"
-                  type="button"
-                  >Update</a
-                >
+                {{ order.customer.firstname }} {{ order.customer.lastname }}'s
+                order
               </div>
             </div>
             <div class="cursor-pointer z-50">
@@ -151,75 +141,103 @@
           </div>
 
           <!--Modal Body-->
-          <div
-            class="bg-cover bg-center h-56 p-4"
-            style="background-image: url(https://via.placeholder.com/450x450)"
-          >
-            <div class="flex justify-end">
-              <svg
-                class="h-6 w-6 text-white fill-current"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12.76 3.76a6 6 0 0 1 8.48 8.48l-8.53 8.54a1 1 0 0 1-1.42 0l-8.53-8.54a6 6 0 0 1 8.48-8.48l.76.75.76-.75zm7.07 7.07a4 4 0 1 0-5.66-5.66l-1.46 1.47a1 1 0 0 1-1.42 0L9.83 5.17a4 4 0 1 0-5.66 5.66L12 18.66l7.83-7.83z"
-                ></path>
-              </svg>
-            </div>
-          </div>
-          <div class="p-4">
-            <div>
-              <span class="text-gray-700 text-sm">Brand:</span>
-              <span class="text-l text-black font-semibold ml-1"
-                >{{product.brand}}</span
-              >
-            </div>
-            <p class="text-3xl text-gray-900 font-semibold">
-              ${{product.price}}
-            </p>
-          </div>
-          <div class="flex p-4 border-t border-gray-300 text-gray-700">
-            <div class="flex-1 inline-flex items-center">
-              <span
-                class="dot"
-                style="background-color: {{product.color}}"
-              ></span>
-              <p>
-                <span class="text-gray-900 font-bold ml-1">
-                  {{product.color}}</span
+          <div class="flex">
+            <div
+              class="bg-cover bg-center h-48 w-48 p-4 mr-5"
+              style="background-image: url(https://via.placeholder.com/450x450)"
+            ></div>
+            <div class="">
+              <div>
+                <span class="text-gray-700 text-xs font-semibold uppercase"
+                  >Product:
+                </span>
+                <span class="text-l text-black font-semibold ml-1"
+                  >{{ order.product.productname }}</span
                 >
-              </p>
-            </div>
-            <div class="flex-1 inline-flex items-center">
-              <p>
-                <span class="text-gray-900 font-bold"
-                  >Size: {{product.size}}</span
+              </div>
+              <div>
+                <span class="text-gray-700 text-xs font-semibold uppercase"
+                  >Status:
+                </span>
+                {% if order.status == 'Pending' %}
+                <span class="text-l text-red-600 font-semibold ml-1"
+                  >{{ order.status }}</span
                 >
-              </p>
+                {% else %}
+                <span class="text-l text-green-600 font-semibold ml-1"
+                  >{{ order.status }}</span
+                >
+                {% endif %}
+              </div>
+              <div>
+                <span class="text-gray-700 text-xs font-semibold uppercase"
+                  >Brand:
+                </span>
+                <span class="text-l text-black font-semibold ml-1"
+                  >{{ order.product.brand }}</span
+                >
+              </div>
+              <div>
+                <span class="text-gray-700 text-xs font-semibold uppercase"
+                  >Color:
+                </span>
+                <span class="text-l text-black font-semibold ml-1"
+                  >{{ order.product.color }}</span
+                >
+              </div>
+              <div>
+                <span class="text-gray-700 text-xs font-semibold uppercase"
+                  >Size:
+                </span>
+                <span class="text-l text-black font-semibold ml-1"
+                  >{{ order.product.size }}</span
+                >
+              </div>
+              <div>
+                <span class="text-gray-700 text-xs font-semibold uppercase"
+                  >Cost:
+                </span>
+                <span class="text-l text-black font-bold ml-1"
+                  >{{ order.product.price }}</span
+                >
+              </div>
             </div>
           </div>
-          <div class="px-4 pt-3 pb-4 border-t border-gray-300 bg-gray-100">
-            <span
-              class="text-xs uppercase font-bold text-gray-600 tracking-wide"
-            >
-              Number of Stocks
-            </span>
-            <span class="font-bold text-gray-900 ml-1">
-              {{product.no_stocks}}
-            </span>
-          </div>
-          <div class="flex justify-end pt-2">
-            <button
-              class="modal-close px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400"
-            >
-              Close
-            </button>
-          </div>
+
+          <form action="" method="POST">
+            {% csrf_token %}
+            <input type="text" name="orderid" value="{{order.id}}" hidden />
+            <div class="flex justify-end pt-2">
+              {% if order.status == 'Pending' %}
+              <button
+                type="submit"
+                id="btnConfirm"
+                name="btnConfirm"
+                class="mr-3 modal-close px-4 bg-green-500 p-3 rounded-lg text-white hover:bg-green-400"
+              >
+                Delivered
+              </button>
+              {% else %}
+              <button
+                type="submit"
+                id="btnConfirm"
+                name="btnConfirm"
+                class="mr-3 modal-close px-4 bg-red-500 p-3 rounded-lg text-white hover:bg-red-400"
+              >
+                un-Delivered
+              </button>
+              {% endif %}
+              <button
+                class="modal-close px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400"
+              >
+                Close
+              </button>
+            </div>
+          </form>
         </div>
       </div>
 
-      <!-- Modal Delete-->
-      <div id="product-delete-{{product.id}}" class="modal">
+      <div id="order-delete-{{order.id}}" class="modal">
         <div class="modal-content py-4 text-left px-6">
           <div class="flex justify-between items-center pb-3">
             <div class="text-2xl font-bold uppercase">Delete Record</div>
@@ -232,13 +250,8 @@
           <form action="" method="POST">
             {% csrf_token %}
             <div class="p-4">
-              <input
-                type="text"
-                name="productid"
-                value="{{product.id}}"
-                hidden
-              />
-              Are you sure you want to delete this record?
+              <input type="text" name="orderid" value="{{order.id}}" hidden />
+              Are you sure you want to delete this Order?
             </div>
             <div class="flex justify-end pt-2">
               <button
@@ -248,8 +261,9 @@
               </button>
               <button
                 type="submit"
-                name="submit"
-                class="modal-close px-4 bg-red-500 p-3 rounded-lg text-white hover:bg-red-400"
+                id="btnDelete"
+                name="btnDelete"
+                class="px-4 bg-red-500 p-3 rounded-lg text-white hover:bg-red-400"
               >
                 Yes
               </button>

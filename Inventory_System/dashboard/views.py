@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
 from django.http import HttpResponse
-from .forms import CustomerForm, ProductForm
-from .models import Customer, Product, Person, Education
+from .forms import CustomerForm, ProductForm, OrderForm
+from .models import Customer, Product, Person, Order
 
 
 def index(request):
@@ -10,20 +10,52 @@ def index(request):
 
 
 def home(request):
-    return render(request, 'dashboard/home.html')
+    customers = Customer.objects.all()[:5]
+    products = Product.objects.all()[:5]
+    ordercount = Order.objects.all().count()
+    customercount = Customer.objects.all().count()
+    productcount = Product.objects.all().count()
+    context = {
+        'customers': customers,
+        'products': products,
+        'ordercount': ordercount,
+        'customercount': customercount,
+        'productcount': productcount
+
+    }
+    return render(request, 'dashboard/home.html', context)
 
 
 class CustomerView(View):
     def get(self, request):
         customers = Customer.objects.all()
-        return render(request, 'dashboard/customer.html', {'customer': customers})
+        products = Product.objects.all()
+        orders = Order.objects.all()
+        context = {
+            'customers': customers,
+            'products': products,
+            'orders': orders
+        }
+        return render(request, 'dashboard/customer.html', context)
 
     def post(self, request):
         if request.method == 'POST':
-            customerid = request.POST.get("customerid")
-            delete_product = Customer.objects.filter(
-                person_ptr_id=customerid).delete()
-            pers = Person.objects.filter(id=customerid).delete()
+            if 'btnDelete' in request.POST:
+                customerid = request.POST.get("customerid")
+                Customer.objects.filter(
+                    person_ptr_id=customerid).delete()
+                Person.objects.filter(id=customerid).delete()
+            elif 'btnOrder' in request.POST:
+                customerid = request.POST.get("customerid")
+                customer = Customer.objects.filter(
+                    person_ptr_id=customerid).get()
+                ordered_list = request.POST.getlist('ordered')
+                for order in ordered_list:
+                    product = Product.objects.filter(id=order).get()
+                    product_info_dict = {
+                        'customer': customer, 'product': product}
+                    Order.objects.create(**product_info_dict)
+
         return redirect('dashboard-customer')
 
 
@@ -35,7 +67,7 @@ class ProductView(View):
     def post(self, request):
         if request.method == 'POST':
             pid = request.POST.get("productid")
-            delete_product = Product.objects.filter(id=pid).delete()
+            Product.objects.filter(id=pid).delete()
         return redirect('dashboard-product')
 
 
@@ -81,9 +113,10 @@ class CustomerRegistrationView(View):
             profile = request.POST.get("profileImage")
             email = request.POST.get("email")
             phoneNumber = request.POST.get("phoneNumber")
-            elemSchool = request.POST.get("elemSchool")
+
             form = Customer(firstname=fname, middlename=mname, lastname=lname, birthday=bday, gender=gender,
-                            status=status, address=address, province=province, zipcode=zipcode, country=country, profile=profile, email=email, phoneNumber=phoneNumber, elemSchool=elemSchool)
+                            status=status, address=address, province=province, zipcode=zipcode, country=country, profile=profile, email=email, phoneNumber=phoneNumber)
+
             form.save()
 
             return redirect('dashboard-customer')
@@ -104,8 +137,8 @@ class ProductUpdateView(View):
             size = request.POST.get("size")
             price = request.POST.get("price")
             no_stock = request.POST.get("no_stocks")
-            update_product = Product.objects.filter(id=pk).update(productname=pname, brand=brand, color=color,
-                                                                  size=size, price=price, no_stocks=no_stock)
+            Product.objects.filter(id=pk).update(productname=pname, brand=brand, color=color,
+                                                 size=size, price=price, no_stocks=no_stock)
             return redirect('dashboard-product')
         else:
             return HttpResponse('failed')
@@ -131,10 +164,32 @@ class CustomerUpdateView(View):
             profile = request.POST.get("profileImage")
             email = request.POST.get("email")
             phoneNumber = request.POST.get("phoneNumber")
-            elemSchool = request.POST.get("elemSchool")
-            update_customer = Customer.objects.filter(person_ptr_id=pk).update(firstname=fname, middlename=mname, lastname=lname, birthday=bday, gender=gender,
-                                                                               status=status, address=address, province=province, zipcode=zipcode, country=country, profile=profile, email=email, phoneNumber=phoneNumber, elemSchool=elemSchool)
-
+            Customer.objects.filter(person_ptr_id=pk).update(firstname=fname, middlename=mname, lastname=lname, birthday=bday, gender=gender,
+                                                             status=status, address=address, province=province, zipcode=zipcode, country=country, profile=profile, email=email, phoneNumber=phoneNumber)
             return redirect('dashboard-customer')
         else:
             return HttpResponse('failed')
+
+
+class OrderView(View):
+    def get(self, request):
+        orders = Order.objects.all()
+        context = {
+            'orders': orders,
+        }
+        return render(request, "dashboard/order.html", context)
+
+    def post(self, request):
+        if request.method == 'POST':
+            orderid = request.POST.get("orderid")
+            if 'btnDelete' in request.POST:
+                Order.objects.filter(id=orderid).delete()
+            if 'btnConfirm' in request.POST:
+                order = Order.objects.filter(id=orderid).get()
+                if order.status == 'Pending':
+                    order.status = 'Delivered'
+                else:
+                    order.status = 'Pending'
+                order.save()
+            return redirect('dashboard-order')
+        return redirect('dashboard-order')

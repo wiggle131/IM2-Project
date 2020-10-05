@@ -40,19 +40,19 @@ $("#eduTab").click(function () {
     $("#elem").toggle();
     $("#addElem").prop("value", "Remove");
   }
-  if ($("#juniorSchool").val().length > 0) {
+  if ($("#junior").val().length > 0) {
     $("#junior").toggle();
     $("#addJunior").prop("value", "Remove");
   }
-  if ($("#seniorSchool").val().length > 0) {
+  if ($("#senior").val().length > 0) {
     $("#senior").toggle();
     $("#addSenior").prop("value", "Remove");
   }
-  if ($("#collegeSchool").val().length > 0) {
+  if ($("#college").val().length > 0) {
     $("#college").toggle();
     $("#addCollege").prop("value", "Remove");
   }
-  if ($("#postSchool").val().length > 0) {
+  if ($("#postgrad").val().length > 0) {
     $("#post").toggle();
     $("#addPost").prop("value", "Remove");
   }
@@ -63,19 +63,19 @@ $("#eduNext").click(function () {
     $("#elem").toggle();
     $("#addElem").prop("value", "Remove");
   }
-  if ($("#juniorSchool").val().length > 0) {
+  if ($("#junior").val().length > 0) {
     $("#junior").toggle();
     $("#addJunior").prop("value", "Remove");
   }
-  if ($("#seniorSchool").val().length > 0) {
+  if ($("#senior").val().length > 0) {
     $("#senior").toggle();
     $("#addSenior").prop("value", "Remove");
   }
-  if ($("#collegeSchool").val().length > 0) {
+  if ($("#college").val().length > 0) {
     $("#college").toggle();
     $("#addCollege").prop("value", "Remove");
   }
-  if ($("#postSchool").val().length > 0) {
+  if ($("#postgrad").val().length > 0) {
     $("#post").toggle();
     $("#addPost").prop("value", "Remove");
   }
@@ -89,6 +89,9 @@ $("#addElem").click(function () {
   } else {
     $("#addElem").prop("value", "Add");
     $("#elemSchool").removeAttr("value");
+    $("#elemGrade").removeAttr("value");
+    $("#elemAwards").removeAttr("value");
+    $("#elemYearCompleted").removeAttr("value");
   }
 });
 
@@ -99,6 +102,10 @@ $("#addJunior").click(function () {
     $("#addJunior").prop("value", "Remove");
   } else {
     $("#addJunior").prop("value", "Add");
+    $("#junior").removeAttr("value");
+    $("#juniorGrade").removeAttr("value");
+    $("#juniorAwards").removeAttr("value");
+    $("#juniorYearCompleted").removeAttr("value");
   }
 });
 
@@ -109,6 +116,10 @@ $("#addSenior").click(function () {
     $("#addSenior").prop("value", "Remove");
   } else {
     $("#addSenior").prop("value", "Add");
+    $("#senior").removeAttr("value");
+    $("#seniorGrade").removeAttr("value");
+    $("#seniorAwards").removeAttr("value");
+    $("#seniorYearCompleted").removeAttr("value");
   }
 });
 
@@ -119,6 +130,10 @@ $("#addCollege").click(function () {
     $("#addCollege").prop("value", "Remove");
   } else {
     $("#addCollege").prop("value", "Add");
+    $("#college").removeAttr("value");
+    $("#collegeGrade").removeAttr("value");
+    $("#collegeAwards").removeAttr("value");
+    $("#collegeYearCompleted").removeAttr("value");
   }
 });
 

@@ -226,10 +226,10 @@
                         <div class="col-12 col-sm-4 mt-4 mt-sm-0">
                           <input
                             class="form-control"
-                            type="Text"
+                            type="text"
                             placeholder="Phone number"
                             oninput="return onlynum()"
-                            maxlength="11"
+                            maxlength="10"
                             name="phoneNumber"
                             value="{{ customer.phoneNumber }}"
                           />
@@ -477,7 +477,7 @@
                               type="number"
                               placeholder="Year Completed"
                               oninput="return onlynum()"
-                              name="elemYearCompleted"
+                              name="elemCompleted"
                               id="elemYearCompleted"
                               value="{{ customer.elemCompleted }}"
                             />
@@ -522,7 +522,7 @@
                               type="number"
                               placeholder="Year Completed"
                               oninput="return onlynum()"
-                              name="elemYearCompleted"
+                              name="elemCompleted"
                               id="elemYearCompleted"
                             />
                           </div>
@@ -549,7 +549,7 @@
                               class="form-control"
                               type="text"
                               placeholder="School"
-                              name="juniorSchool"
+                              name="jrSchool"
                               id="junior"
                               value="{{ customer.jsSchool }}"
                             />
@@ -559,7 +559,7 @@
                               class="form-control"
                               type="number"
                               placeholder="Grade"
-                              name="juniorGrade"
+                              name="jrGrade"
                               id="juniorGrade"
                               value="{{ customer.jsGrade }}"
                             />
@@ -571,7 +571,7 @@
                               class="form-control"
                               type="text"
                               placeholder="Awards (Ex: Honesty, Punctual...)"
-                              name="juniorAwards"
+                              name="jrAwards"
                               id="juniorAwards"
                               value="{{ customer.jsAwards }}"
                             />
@@ -582,7 +582,7 @@
                               type="number"
                               placeholder="Year Completed"
                               oninput="return onlynum()"
-                              name="juniorYearCompleted"
+                              name="jrCompleted"
                               id="juniorYearCompleted"
                               value="{{ customer.jsCompleted }}"
                             />
@@ -597,7 +597,7 @@
                               class="form-control"
                               type="text"
                               placeholder="School"
-                              name="juniorSchool"
+                              name="jrSchool"
                               id="junior"
                               onInput="checkLength('junior')"
                             />
@@ -607,7 +607,7 @@
                               class="form-control"
                               type="number"
                               placeholder="Grade"
-                              name="juniorGrade"
+                              name="jrGrade"
                               id="juniorGrade"
                             />
                           </div>
@@ -618,7 +618,7 @@
                               class="form-control"
                               type="text"
                               placeholder="Awards (Ex: Honesty, Punctual...)"
-                              name="juniorAwards"
+                              name="jrAwards"
                               id="juniorAwards"
                             />
                           </div>
@@ -628,7 +628,7 @@
                               type="number"
                               placeholder="Year Completed"
                               oninput="return onlynum()"
-                              name="juniorYearCompleted"
+                              name="jrCompleted"
                               id="juniorYearCompleted"
                             />
                           </div>
@@ -655,7 +655,7 @@
                               class="form-control"
                               type="text"
                               placeholder="School"
-                              name="seniorSchool"
+                              name="srSchool"
                               value="{{ customer.srSchool }}"
                               id="senior"
                               onInput="checkLength('senior')"
@@ -666,7 +666,7 @@
                               class="form-control"
                               type="number"
                               placeholder="Grade"
-                              name="seniorGrade"
+                              name="srGrade"
                               id="seniorGrade"
                               value="{{ customer.srGrade }}"
                             />
@@ -678,7 +678,7 @@
                               class="form-control"
                               type="text"
                               placeholder="Awards (Ex: Honesty, Punctual...)"
-                              name="seniorAwards"
+                              name="srAwards"
                               id="seniorAwards"
                               value="{{ customer.srAwards }}"
                             />
@@ -689,7 +689,7 @@
                               type="number"
                               placeholder="Year Completed"
                               oninput="return onlynum()"
-                              name="seniorYearCompleted"
+                              name="srCompleted"
                               id="seniorYearCompleted"
                               value="{{ customer.srCompleted }}"
                             />
@@ -704,7 +704,7 @@
                               class="form-control"
                               type="text"
                               placeholder="School"
-                              name="seniorSchool"
+                              name="srSchool"
                               id="senior"
                             />
                           </div>
@@ -713,7 +713,7 @@
                               class="form-control"
                               type="number"
                               placeholder="Grade"
-                              name="seniorGrade"
+                              name="srGrade"
                               id="seniorGrade"
                             />
                           </div>
@@ -724,7 +724,7 @@
                               class="form-control"
                               type="text"
                               placeholder="Awards (Ex: Honesty, Punctual...)"
-                              name="seniorAwards"
+                              name="srAwards"
                               id="seniorAwards"
                             />
                           </div>
@@ -734,7 +734,7 @@
                               type="number"
                               placeholder="Year Completed"
                               oninput="return onlynum()"
-                              name="seniorYearCompleted"
+                              name="srCompleted"
                               id="seniorYearCompleted"
                             />
                           </div>
@@ -795,7 +795,7 @@
                               type="number"
                               placeholder="Year Completed"
                               oninput="return onlynum()"
-                              name="collegeYearCompleted"
+                              name="collegeCompleted"
                               id="collegeYearCompleted"
                               value="{{ customer.collegeCompleted }}"
                             />
@@ -840,7 +840,7 @@
                               type="number"
                               placeholder="Year Completed"
                               oninput="return onlynum()"
-                              name="collegeYearCompleted"
+                              name="collegeCompleted"
                               id="collegeYearCompleted"
                             />
                           </div>
@@ -889,7 +889,7 @@
                               class="form-control"
                               type="text"
                               placeholder="Awards (Ex: Honesty, Punctual...)"
-                              name="postawards"
+                              name="postAwards"
                               id="postawards"
                               value="{{ customer.postAwards }}"
                             />
@@ -900,7 +900,7 @@
                               type="number"
                               placeholder="Year Completed"
                               oninput="return onlynum()"
-                              name="postYearCompleted"
+                              name="postCompleted"
                               id="postYearCompleted"
                               value="{{ customer.postCompleted }}"
                             />
@@ -936,7 +936,7 @@
                               class="form-control"
                               type="text"
                               placeholder="Awards (Ex: Honesty, Punctual...)"
-                              name="postawards"
+                              name="postAwards"
                               id="postawards"
                             />
                           </div>
@@ -946,7 +946,7 @@
                               type="number"
                               placeholder="Year Completed"
                               oninput="return onlynum()"
-                              name="postYearCompleted"
+                              name="postCompleted"
                               id="postYearCompleted"
                             />
                           </div>
@@ -1107,14 +1107,14 @@
             document.getElementById("fname").style.border = "3px solid #ced4da";
           if (!lname_flag)
             document.getElementById("lname").style.border = "3px solid #ced4da";
-          if (!bdate_flag)
-            document.getElementById("bdate").style.border = "3px solid #ced4da";
+          // if (!bdate_flag)
+          //   document.getElementById("bdate").style.border = "3px solid #ced4da";
           if (fname_flag)
             document.getElementById("fname").style.border = "3px solid red";
           if (lname_flag)
             document.getElementById("lname").style.border = "3px solid red";
-          if (bdate_flag)
-            document.getElementById("bdate").style.border = "3px solid red";
+          // if (bdate_flag)
+          //   document.getElementById("bdate").style.border = "3px solid red";
           document.getElementById("userinfo").click();
           return false;
         }

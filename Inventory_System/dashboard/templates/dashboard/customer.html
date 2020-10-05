@@ -103,7 +103,7 @@
       </tr>
     </thead>
     <tbody>
-      {% for customer in customer %}
+      {% for customer in customers %}
       <tr>
         <td>{{ customer.date_registered|date:"d/m/Y" }}</td>
         <td>{{ customer.firstname }}</td>
@@ -116,6 +116,12 @@
             data-modal="customer-view-{{customer.id}}"
           >
             View
+          </button>
+          <button
+            class="button bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400 text-white font-bold py-2 px-4 rounded mr-3"
+            data-modal="customer-order-{{customer.id}}"
+          >
+            Place Order
           </button>
           <button
             class="button bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400 text-white font-bold py-2 px-4 rounded"
@@ -330,230 +336,47 @@
             </div>
 
             <hr class="my-4" />
-
-            <h3 class="font-bold text-xl uppercase">Educational Background</h3>
-            <div class="ml-3">
-              <h3 class="font-bold text-l uppercase">Elementary:</h3>
-              <div>
-                <span class="text-gray-700 text-xs font-bold uppercase"
-                  >School:
-                </span>
-                <span class="text-l text-black font-semibold ml-1"
-                  >{{ customer.elemSchool }}
-                </span>
+            <h3 class="font-bold text-xl uppercase">Orders</h3>
+            <div class="">
+              {% for order in orders %} 
+              {% if order.customer.id == customer.id %}
+              <div class="flex items-center">
+                <img
+                  src="{% static '/img/profile.png' %}"
+                  alt="profile"
+                  class="h-24 w-24 mr-3 mt-2"
+                />
+                <div>
+                  <h3 class="font-bold text-2xl uppercase">
+                    {{ order.product.productname }}
+                  </h3>
+                  <div>
+                    <span class="text-gray-700 text-xs font-semibold uppercase"
+                      >Status:
+                    </span>
+                    {% if order.status == 'Pending' %}
+                    <span class="text-l text-red-600 font-semibold ml-1"
+                      >{{ order.status }}</span
+                    >
+                    {% else %}
+                    <span class="text-l text-green-600 font-semibold ml-1"
+                      >{{ order.status }}</span
+                    >
+                    {% endif %}
+                  </div>
+                </div>
               </div>
-              <div>
-                <span class="text-gray-700 text-xs font-bold uppercase"
-                  >Grade:
-                </span>
-                <span class="text-l text-black font-semibold ml-1"
-                  >{{ customer.elemGrade }}</span
-                >
-              </div>
-              <div>
-                <span class="text-gray-700 text-xs font-bold uppercase"
-                  >Year Completed:
-                </span>
-                <span class="text-l text-black font-semibold ml-1"
-                  >{{ customer.elemYearCompleted }}</span
-                >
-              </div>
-              <div>
-                <span class="text-gray-700 text-xs font-bold uppercase"
-                  >Awards:
-                </span>
-                <span class="text-l text-black font-semibold ml-1"
-                  >{{ customer.elemAwards }}</span
-                >
-              </div>
+              {% endif %} 
+              {% endfor %}
             </div>
 
-            <div class="ml-3">
-              <h3 class="font-bold text-l uppercase">Junior High:</h3>
-              <div>
-                <span class="text-gray-700 text-xs font-bold uppercase"
-                  >School:
-                </span>
-                <span class="text-l text-black font-semibold ml-1"
-                  >{{ customer.jrSchool }}
-                </span>
-              </div>
-              <div>
-                <span class="text-gray-700 text-xs font-bold uppercase"
-                  >Grade:
-                </span>
-                <span class="text-l text-black font-semibold ml-1"
-                  >{{ customer.jrGrade }}</span
-                >
-              </div>
-              <div>
-                <span class="text-gray-700 text-xs font-bold uppercase"
-                  >Year Completed:
-                </span>
-                <span class="text-l text-black font-semibold ml-1"
-                  >{{ customer.jrYearCompleted }}</span
-                >
-              </div>
-              <div>
-                <span class="text-gray-700 text-xs font-bold uppercase"
-                  >Awards:
-                </span>
-                <span class="text-l text-black font-semibold ml-1"
-                  >{{ customer.jrAwards }}</span
-                >
-              </div>
+            <div class="flex justify-end pt-2">
+              <button
+                class="modal-close px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400"
+              >
+                Close
+              </button>
             </div>
-            <div class="ml-3">
-              <h3 class="font-bold text-l uppercase">Senior High:</h3>
-              <div>
-                <span class="text-gray-700 text-xs font-bold uppercase"
-                  >School:
-                </span>
-                <span class="text-l text-black font-semibold ml-1"
-                  >{{ customer.srSchool }}
-                </span>
-              </div>
-              <div>
-                <span class="text-gray-700 text-xs font-bold uppercase"
-                  >Grade:
-                </span>
-                <span class="text-l text-black font-semibold ml-1"
-                  >{{ customer.srGrade }}</span
-                >
-              </div>
-              <div>
-                <span class="text-gray-700 text-xs font-bold uppercase"
-                  >Year Completed:
-                </span>
-                <span class="text-l text-black font-semibold ml-1"
-                  >{{ customer.srYearCompleted }}</span
-                >
-              </div>
-              <div>
-                <span class="text-gray-700 text-xs font-bold uppercase"
-                  >Awards:
-                </span>
-                <span class="text-l text-black font-semibold ml-1"
-                  >{{ customer.srAwards }}</span
-                >
-              </div>
-            </div>
-            <div class="ml-3">
-              <h3 class="font-bold text-l uppercase">College:</h3>
-              <div>
-                <span class="text-gray-700 text-xs font-bold uppercase"
-                  >School:
-                </span>
-                <span class="text-l text-black font-semibold ml-1"
-                  >{{ customer.collegeSchool }}
-                </span>
-              </div>
-              <div>
-                <span class="text-gray-700 text-xs font-bold uppercase"
-                  >Grade:
-                </span>
-                <span class="text-l text-black font-semibold ml-1"
-                  >{{ customer.collegeGrade }}</span
-                >
-              </div>
-              <div>
-                <span class="text-gray-700 text-xs font-bold uppercase"
-                  >Year Completed:
-                </span>
-                <span class="text-l text-black font-semibold ml-1"
-                  >{{ customer.collegeYearCompleted }}</span
-                >
-              </div>
-              <div>
-                <span class="text-gray-700 text-xs font-bold uppercase"
-                  >Awards:
-                </span>
-                <span class="text-l text-black font-semibold ml-1"
-                  >{{ customer.collegeAwards }}</span
-                >
-              </div>
-            </div>
-            <div class="ml-3">
-              <h3 class="font-bold text-l uppercase">Post Graduate:</h3>
-              <div>
-                <span class="text-gray-700 text-xs font-bold uppercase"
-                  >School:
-                </span>
-                <span class="text-l text-black font-semibold ml-1"
-                  >{{ customer.postSchool }}
-                </span>
-              </div>
-              <div>
-                <span class="text-gray-700 text-xs font-bold uppercase"
-                  >Grade:
-                </span>
-                <span class="text-l text-black font-semibold ml-1"
-                  >{{ customer.postGrade }}</span
-                >
-              </div>
-              <div>
-                <span class="text-gray-700 text-xs font-bold uppercase"
-                  >Year Completed:
-                </span>
-                <span class="text-l text-black font-semibold ml-1"
-                  >{{ customer.postYearCompleted }}</span
-                >
-              </div>
-              <div>
-                <span class="text-gray-700 text-xs font-bold uppercase"
-                  >Awards:
-                </span>
-                <span class="text-l text-black font-semibold ml-1"
-                  >{{ customer.postAwards }}</span
-                >
-              </div>
-            </div>
-            <hr class="my-4" />
-
-            <h3 class="font-bold text-xl uppercase">Professional Background</h3>
-            <div class="ml-3">
-              <h3 class="font-bold text-l uppercase">Trainings:</h3>
-              <div>
-                <span class="text-gray-700 text-xs font-bold uppercase"
-                  >Title:
-                </span>
-                <span class="text-l text-black font-semibold ml-1"
-                  >{{ customer.trainingTitle }}
-                </span>
-              </div>
-              <div>
-                <span class="text-gray-700 text-xs font-bold uppercase"
-                  >Grade:
-                </span>
-                <span class="text-l text-black font-semibold ml-1"
-                  >{{ customer.trainingSponsor }}</span
-                >
-              </div>
-              <div>
-                <span class="text-gray-700 text-xs font-bold uppercase"
-                  >Year Completed:
-                </span>
-                <span class="text-l text-black font-semibold ml-1"
-                  >{{ customer.trainingDate|date:"F d, Y" }}</span
-                >
-              </div>
-              <div>
-                <span class="text-gray-700 text-xs font-bold uppercase"
-                  >Awards:
-                </span>
-                <span class="text-l text-black font-semibold ml-1"
-                  >{{ customer.trainingVenue }}</span
-                >
-              </div>
-            </div>
-          </div>
-
-          <div class="flex justify-end pt-2">
-            <button
-              class="px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400"
-            >
-              Close
-            </button>
           </div>
         </div>
       </div>
@@ -588,7 +411,8 @@
               </button>
               <button
                 type="submit"
-                name="submit"
+                id="btnDelete"
+                name="btnDelete"
                 class="modal-close px-4 bg-red-500 p-3 rounded-lg text-white hover:bg-red-400"
               >
                 Yes
@@ -597,6 +421,74 @@
           </form>
         </div>
       </div>
+
+      <!-- Modal Order-->
+      <div id="customer-order-{{customer.id}}" class="modal">
+        <div class="modal-content py-4 text-left px-6">
+          <div class="flex justify-between items-center pb-3">
+            <div class="text-2xl font-bold uppercase">Order</div>
+            <div class="cursor-pointer z-50">
+              <a class="close">&times;</a>
+            </div>
+          </div>
+
+          <!--Modal Body-->
+          <span class="text-l text-black font-bold">Products: </span>
+          <div class="p-4">
+            <form action="" method="POST">
+              {% csrf_token %}
+              <input
+                type="text"
+                name="customerid"
+                value="{{customer.id}}"
+                hidden
+              />
+              <div>
+                {% for product in products %}
+                <div class="">
+                  <div class="flex justify-between items-center">
+                    <div class="flex items-center">
+                      <img
+                        src="{% static '/img/profile.png' %}"
+                        alt="profile"
+                        class="h-24 w-24 mr-3 mt-2"
+                      />
+                      <div>
+                        <h3 class="font-bold text-2xl uppercase">
+                          {{ product.productname }}
+                        </h3>
+                        <span class="text-gray-700 text-m font-bold uppercase"
+                          >P {{ product.price }}
+                        </span>
+                      </div>
+                    </div>
+                    <div class="">
+                      <input
+                        type="checkbox"
+                        name="ordered"
+                        value="{{ product.id }}"
+                      />
+                    </div>
+                  </div>
+                </div>
+                {% endfor%}
+              </div>
+
+              <div class="flex justify-end pt-2">
+                <button
+                  type="submit"
+                  id="btnOrder"
+                  name="btnOrder"
+                  class="modal-close px-4 bg-green-500 p-3 rounded-lg text-white hover:bg-green-400"
+                >
+                  Place Order
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
       {% endfor %}
     </tbody>
   </table>
@@ -669,6 +561,13 @@
     });
 
     var closeBtns = document.querySelectorAll(".close");
+    closeBtns.forEach(function addCloseClickEvent(btn) {
+      btn.onclick = function closeModal() {
+        var modal = closestEl(btn, ".modal");
+        modal.style.display = "none";
+      };
+    });
+    var closeBtns = document.querySelectorAll(".modal-close");
     closeBtns.forEach(function addCloseClickEvent(btn) {
       btn.onclick = function closeModal() {
         var modal = closestEl(btn, ".modal");
