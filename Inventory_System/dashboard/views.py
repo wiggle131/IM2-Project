@@ -3,6 +3,7 @@ from django.views.generic import View
 from django.http import HttpResponse
 from .forms import CustomerForm, ProductForm, OrderForm
 from .models import Customer, Product, Person, Order
+from django.db.models import F
 
 
 def index(request):
@@ -51,10 +52,15 @@ class CustomerView(View):
                 customer = Customer.objects.filter(
                     person_ptr_id=customerid).get()
                 ordered_list = request.POST.getlist('ordered')
+                quantity_list = request.POST.getlist('quantity')
                 for order in ordered_list:
                     product = Product.objects.filter(id=order).get()
+                    quantity = quantity_list[ordered_list.index(order)]
+                    cost = product.price * float(quantity)
+                    Product.objects.filter(id = order).update(no_stocks= F('no_stocks') - quantity)
+                    
                     product_info_dict = {
-                        'customer': customer, 'product': product}
+                        'customer': customer, 'product': product, 'cost': cost, 'quantity': quantity}
                     Order.objects.create(**product_info_dict)
             elif 'btnFilter' in request.POST:
                 if request.POST.get("start_date") and request.POST.get("end_date"):

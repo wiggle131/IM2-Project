@@ -154,19 +154,12 @@
         <div class="modal-content py-4 text-left px-6">
           <div class="flex justify-between items-center pb-3">
             <div class="flex">
-              {% if customer.profile %}
               <img
-                src="{{ customer.profile.url }}"
+                src="{% if customer.profile %} {{ customer.profile.url }} {% else %} {% static '/img/profile.png' %} {% endif %}"
                 alt="profile"
                 class="h-20 w-20 rounded-full border-4 border-white mr-3 ml-2"
               />
-              {% else %}
-              <img
-                src="{% static '/img/profile.png' %}"
-                alt="profile"
-                class="h-20 w-20 rounded-full border-4 border-white mr-3 ml-2"
-              />
-              {% endif %}
+
               <div class="mt-3">
                 <h3 class="font-bold text-2xl uppercase">
                   {{ customer.lastname }}, {{ customer.firstname }}
@@ -372,15 +365,10 @@
                     <span class="text-gray-700 text-xs font-semibold uppercase"
                       >Status:
                     </span>
-                    {% if order.status == 'Pending' %}
-                    <span class="text-l text-red-600 font-semibold ml-1"
+                    <span
+                      class="{% if order.status == 'Pending' %} text-red-600 {% else %} text-green-600 {% endif %}text-l font-semibold ml-1"
                       >{{ order.status }}</span
                     >
-                    {% else %}
-                    <span class="text-l text-green-600 font-semibold ml-1"
-                      >{{ order.status }}</span
-                    >
-                    {% endif %}
                   </div>
                 </div>
               </div>
@@ -480,6 +468,7 @@
                       </div>
                     </div>
                     <div class="">
+                      <input type="number" name="quantity" min="1" value="1" />
                       <input
                         type="checkbox"
                         name="ordered"

@@ -47,6 +47,8 @@ class Order(models.Model):
     product = models.ForeignKey(Product, null=True, on_delete=models.SET_NULL)
     date_created = models.DateTimeField(default=timezone.now)
     status = models.CharField(max_length=15, default='Pending')
+    cost = models.FloatField()
+    quantity = models.IntegerField()
 
     class Meta:
         db_table = "Order"

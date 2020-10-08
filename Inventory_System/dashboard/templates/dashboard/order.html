@@ -112,6 +112,7 @@
         <th data-priority="4">Product</th>
         <th data-priority="5">Status</th>
         <th data-priority="6">Cost</th>
+        <th data-priority="7">Quantity</th>
         <th></th>
       </tr>
     </thead>
@@ -122,12 +123,9 @@
         <td>{{ order.id }}</td>
         <td>{{ order.customer.firstname }} {{ order.customer.lastname }}</td>
         <td>{{ order.product.productname }}</td>
-        {% if order.status == 'Pending' %}
-        <td class="text-red-600">{{ order.status }}</td>
-        {% else %}
-        <td class="text-green-600">{{ order.status }}</td>
-        {% endif %}
-        <td>{{ order.product.price }}</td>
+        <td class="{% if order.status == 'Pending' %} text-red-600 {% else %} text-green-600 {% endif %}">{{ order.status }}</td>
+        <td>{{ order.cost }}</td>
+        <td>{{ order.quantity }}</td>
         <td class="flex justify-end">
           <button
             class="button bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400 text-white font-bold py-2 px-4 rounded mr-3"
@@ -176,15 +174,10 @@
                 <span class="text-gray-700 text-xs font-semibold uppercase"
                   >Status:
                 </span>
-                {% if order.status == 'Pending' %}
-                <span class="text-l text-red-600 font-semibold ml-1"
+                <span class="{% if order.status == 'Pending' %} text-red-600 {% else %} text-green-600 {% endif %} text-lfont-semibold ml-1"
                   >{{ order.status }}</span
                 >
-                {% else %}
-                <span class="text-l text-green-600 font-semibold ml-1"
-                  >{{ order.status }}</span
-                >
-                {% endif %}
+                
               </div>
               <div>
                 <span class="text-gray-700 text-xs font-semibold uppercase"
@@ -215,7 +208,15 @@
                   >Cost:
                 </span>
                 <span class="text-l text-black font-bold ml-1"
-                  >{{ order.product.price }}</span
+                  >{{ order.cost }}</span
+                >
+              </div>
+              <div>
+                <span class="text-gray-700 text-xs font-semibold uppercase"
+                  >Quantity:
+                </span>
+                <span class="text-l text-black font-bold ml-1"
+                  >{{ order.quantity }}</span
                 >
               </div>
             </div>
