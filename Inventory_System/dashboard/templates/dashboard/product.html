@@ -50,24 +50,41 @@
     <h1 class="font-bold text-4xl mb-2">Products</h1>
   </div>
   <div class="flex justify-between mr-6">
-    <p class="text-white font-bold py-2 pl-4 rounded m-5">Start Date:</p>
-    <input
-      type="date"
-      class="datepicker text-black font-bold py-2 pr-4 rounded mr-5 my-5"
-      id="#start_date"
-    />
-    <p class="text-white font-bold py-2 pl-4 rounded m-5">End Date:</p>
-    <input
-      type="date"
-      class="datepicker text-black font-bold py-2 pr-4 rounded mr-5 my-5"
-      id="#end_date"
-    />
-    <button
-      class="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-5"
-      id="filter"
-    >
-      Filter
-    </button>
+    <form action="" method="POST" class="flex">
+      {% csrf_token %}
+      <p class="text-white font-bold py-2 pl-4 rounded m-5">Start Date:</p>
+      <input
+        type="date"
+        class="datepicker text-black font-bold py-2 pr-4 rounded mr-5 my-5"
+        id="#start_date"
+        name="start_date"
+        value="{{ start_date }}"
+      />
+      <p class="text-white font-bold py-2 pl-4 rounded m-5">End Date:</p>
+      <input
+        type="date"
+        class="datepicker text-black font-bold py-2 pr-4 rounded mr-5 my-5"
+        id="#end_date"
+        name="end_date"
+        value="{{ end_date }}"
+      />
+      <button
+        class="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-5 ml-5 mx-2"
+        id="filter"
+        name="btnFilter"
+        type="submit"
+      >
+        Filter
+      </button>
+      <button
+        class="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-5"
+        id="remove"
+        name="btnRemoveFilter"
+        type="submit"
+      >
+        Remove
+      </button>
+    </form>
     <button
       class="bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-5"
       id="btnExport"
@@ -248,7 +265,7 @@
               </button>
               <button
                 type="submit"
-                name="submit"
+                name="btnDelete"
                 class="modal-close px-4 bg-red-500 p-3 rounded-lg text-white hover:bg-red-400"
               >
                 Yes

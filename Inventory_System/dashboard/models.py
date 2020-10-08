@@ -35,6 +35,7 @@ class Product(models.Model):
     size = models.FloatField()
     price = models.FloatField()
     no_stocks = models.IntegerField()
+    date_registered = models.DateTimeField(default=timezone.now)
 
     class Meta:
         db_table = "Product"

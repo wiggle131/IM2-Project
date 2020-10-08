@@ -66,8 +66,21 @@ class ProductView(View):
 
     def post(self, request):
         if request.method == 'POST':
-            pid = request.POST.get("productid")
-            Product.objects.filter(id=pid).delete()
+            if 'btnDelete' in request.POST:
+                pid = request.POST.get("productid")
+                Product.objects.filter(id=pid).delete()
+            elif 'btnFilter' in request.POST:
+                if request.POST.get("start_date") and request.POST.get("end_date"):
+                    start = request.POST.get("start_date")
+                    end = request.POST.get("end_date")
+                    products = Product.objects.filter(date_registered__range = (start,end))
+                    context = {
+                        'product': products,
+                        'start_date': start,
+                        'end_date': end
+                        
+                    }
+                    return render(request, "dashboard/product.html", context)
         return redirect('dashboard-product')
 
 
