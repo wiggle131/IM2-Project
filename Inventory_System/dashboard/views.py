@@ -56,6 +56,19 @@ class CustomerView(View):
                     product_info_dict = {
                         'customer': customer, 'product': product}
                     Order.objects.create(**product_info_dict)
+            elif 'btnFilter' in request.POST:
+                if request.POST.get("start_date") and request.POST.get("end_date"):
+                    start = request.POST.get("start_date")
+                    end = request.POST.get("end_date")
+                    customers = Customer.objects.filter(
+                        date_registered__range=(start, end))
+                    context = {
+                        'customers': customers,
+                        'start_date': start,
+                        'end_date': end
+
+                    }
+                    return render(request, "dashboard/customer.html", context)
         return redirect('dashboard-customer')
 
 
@@ -73,12 +86,13 @@ class ProductView(View):
                 if request.POST.get("start_date") and request.POST.get("end_date"):
                     start = request.POST.get("start_date")
                     end = request.POST.get("end_date")
-                    products = Product.objects.filter(date_registered__range = (start,end))
+                    products = Product.objects.filter(
+                        date_registered__range=(start, end))
                     context = {
                         'product': products,
                         'start_date': start,
                         'end_date': end
-                        
+
                     }
                     return render(request, "dashboard/product.html", context)
         return redirect('dashboard-product')
@@ -204,5 +218,14 @@ class OrderView(View):
                 else:
                     order.status = 'Pending'
                 order.save()
-            return redirect('dashboard-order')
+            if 'btnFilter' in request.POST:
+                if request.POST.get("start_date") and request.POST.get("end_date"):
+                    start = request.POST.get("start_date")
+                    end = request.POST.get("end_date")
+                    orders = Order.objects.filter(
+                        date_created__range=(start, end))
+                    context = {
+                        'orders': orders,
+                    }
+                    return render(request, "dashboard/order.html", context)
         return redirect('dashboard-order')
