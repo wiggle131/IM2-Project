@@ -28,7 +28,7 @@ def home(request):
 
 class CustomerView(View):
     def get(self, request):
-        customers = Customer.objects.all()
+        customers = customers = Customer.objects.all()
         products = Product.objects.all()
         orders = Order.objects.all()
         context = {
@@ -36,6 +36,7 @@ class CustomerView(View):
             'products': products,
             'orders': orders
         }
+
         return render(request, 'dashboard/customer.html', context)
 
     def post(self, request):
@@ -55,7 +56,6 @@ class CustomerView(View):
                     product_info_dict = {
                         'customer': customer, 'product': product}
                     Order.objects.create(**product_info_dict)
-
         return redirect('dashboard-customer')
 
 
