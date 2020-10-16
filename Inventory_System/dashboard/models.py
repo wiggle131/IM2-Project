@@ -23,6 +23,7 @@ class Person(models.Model):
 class Customer(Person):
     profile = models.ImageField(null=True, blank=True, upload_to="images/")
     date_registered = models.DateTimeField(default=timezone.now)
+    isDeleted = models.IntegerField(default=0)
 
     class Meta:
         db_table = "Customer"
@@ -36,6 +37,7 @@ class Product(models.Model):
     price = models.FloatField()
     no_stocks = models.IntegerField()
     date_registered = models.DateTimeField(default=timezone.now)
+    isDeleted = models.IntegerField(default=0)
 
     class Meta:
         db_table = "Product"
@@ -49,6 +51,7 @@ class Order(models.Model):
     status = models.CharField(max_length=15, default='Pending')
     cost = models.FloatField()
     quantity = models.IntegerField()
+    isDeleted = models.IntegerField(default=0)
 
     class Meta:
         db_table = "Order"

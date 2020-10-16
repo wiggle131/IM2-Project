@@ -11,11 +11,11 @@ def index(request):
 
 
 def home(request):
-    customers = Customer.objects.all()[:5]
-    products = Product.objects.all()[:5]
-    ordercount = Order.objects.all().count()
-    customercount = Customer.objects.all().count()
-    productcount = Product.objects.all().count()
+    customers = Customer.objects.all().exclude(isDeleted=1)[:5]
+    products = Product.objects.all().exclude(isDeleted=1)[:5]
+    ordercount = Order.objects.all().exclude(isDeleted=1).count()
+    customercount = Customer.objects.all().exclude(isDeleted=1).count()
+    productcount = Product.objects.all().exclude(isDeleted=1).count()
     context = {
         'customers': customers,
         'products': products,
@@ -29,9 +29,9 @@ def home(request):
 
 class CustomerView(View):
     def get(self, request):
-        customers = customers = Customer.objects.all()
-        products = Product.objects.all()
-        orders = Order.objects.all()
+        customers = Customer.objects.all().exclude(isDeleted=1)
+        products = Product.objects.all().exclude(isDeleted=1)
+        orders = Order.objects.all().exclude(isDeleted=1)
         context = {
             'customers': customers,
             'products': products,
@@ -45,8 +45,7 @@ class CustomerView(View):
             if 'btnDelete' in request.POST:
                 customerid = request.POST.get("customerid")
                 Customer.objects.filter(
-                    person_ptr_id=customerid).delete()
-                Person.objects.filter(id=customerid).delete()
+                    person_ptr_id=customerid).update(isDeleted=1)
             elif 'btnOrder' in request.POST:
                 customerid = request.POST.get("customerid")
                 customer = Customer.objects.filter(
@@ -57,8 +56,9 @@ class CustomerView(View):
                     product = Product.objects.filter(id=order).get()
                     quantity = quantity_list[ordered_list.index(order)]
                     cost = product.price * float(quantity)
-                    Product.objects.filter(id = order).update(no_stocks= F('no_stocks') - quantity)
-                    
+                    Product.objects.filter(id=order).update(
+                        no_stocks=F('no_stocks') - quantity)
+
                     product_info_dict = {
                         'customer': customer, 'product': product, 'cost': cost, 'quantity': quantity}
                     Order.objects.create(**product_info_dict)
@@ -80,14 +80,14 @@ class CustomerView(View):
 
 class ProductView(View):
     def get(self, request):
-        products = Product.objects.all()
+        products = Product.objects.all().exclude(isDeleted=1)
         return render(request, "dashboard/product.html", {'product': products})
 
     def post(self, request):
         if request.method == 'POST':
             if 'btnDelete' in request.POST:
                 pid = request.POST.get("productid")
-                Product.objects.filter(id=pid).delete()
+                Product.objects.filter(id=pid).update(isDeleted=1)
             elif 'btnFilter' in request.POST:
                 if request.POST.get("start_date") and request.POST.get("end_date"):
                     start = request.POST.get("start_date")
@@ -206,7 +206,7 @@ class CustomerUpdateView(View):
 
 class OrderView(View):
     def get(self, request):
-        orders = Order.objects.all()
+        orders = Order.objects.all().exclude(isDeleted=1)
         context = {
             'orders': orders,
         }
@@ -216,7 +216,7 @@ class OrderView(View):
         if request.method == 'POST':
             orderid = request.POST.get("orderid")
             if 'btnDelete' in request.POST:
-                Order.objects.filter(id=orderid).delete()
+                Order.objects.filter(id=orderid).update(isDeleted=1)
             if 'btnConfirm' in request.POST:
                 order = Order.objects.filter(id=orderid).get()
                 if order.status == 'Pending':

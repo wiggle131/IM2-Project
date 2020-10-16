@@ -135,9 +135,6 @@
 
         <nav class="nav-menu d-none d-lg-block">
           <ul>
-            <li class=""><a href="index.html">EXPLORE</a></li>
-            <li><a href="#about">PRICING</a></li>
-            <li><a href="#services">FEATURE</a></li>
             <li>
               <a
                 data-target="#aboutUsModal"
@@ -469,12 +466,13 @@
                             >Remember password</label
                           >
                         </div>
-                        <button
+                        <a
                           class="btn btn-lg btn-primary btn-block text-uppercase"
                           type="submit"
+                          href="{% url 'dashboard-home' %}"
                         >
                           Sign in
-                        </button>
+                      </a>
                         <hr class="my-4" />
                       </form>
                     </div>
